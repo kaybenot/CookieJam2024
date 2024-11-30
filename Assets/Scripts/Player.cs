@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     [field: SerializeField] public SigilTree SigilTree { get; private set; } = new();
-    
+
     public Action<int, int> OnHealthChanged { get; set; }
     public Action OnHitReceived { get; set; }
     public Action OnDeath { get; set; }
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
         Health -= dmg;
         OnHealthChanged?.Invoke(Health, MaxHealth);
         OnHitReceived?.Invoke();
+        animator.SetTrigger("Hit");
         if (Health <= 0)
         {
             OnDeath?.Invoke();
