@@ -8,7 +8,7 @@ public class MouseInputEventProvider : MonoBehaviour
 
     [SerializeField]
     private InputActionReference pressInputActionReference;
-    private InputActionReference pressInputAction;
+    private InputAction pressInputAction;
 
     [SerializeField]
     private Vector2 mouseDelta;
@@ -22,15 +22,15 @@ public class MouseInputEventProvider : MonoBehaviour
 
     private void OnEnable()
     {
-        pressInputAction = Instantiate(pressInputActionReference);
-        pressInputAction.action.Enable();
-        pressInputAction.action.canceled += Action_canceled;
+        pressInputAction = pressInputActionReference.action.Clone();
+        pressInputAction.Enable();
+        pressInputAction.canceled += Action_canceled;
     }
 
     private void Update()
     {
         mouseDelta = Mouse.current.delta.value;
-        if (isDragging == false && pressInputAction.action.IsInProgress() && mouseDelta.sqrMagnitude > deltaThreshold * deltaThreshold)
+        if (isDragging == false && pressInputAction.IsInProgress() && mouseDelta.sqrMagnitude > deltaThreshold * deltaThreshold)
         {
             StartDragging();       
         }
@@ -55,7 +55,7 @@ public class MouseInputEventProvider : MonoBehaviour
 
     private void OnDisable()
     {
-        pressInputAction.action.canceled -= Action_canceled;
-        pressInputAction.action.Disable();
+        pressInputAction.canceled -= Action_canceled;
+        pressInputAction.Disable();
     }
 }
