@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -7,6 +6,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private LevelSettings editorLevel;
     
     private Level currentLevel = null;
+    public Level CurrentLevel => currentLevel;
 
     [ContextMenu("Run editorLevel")]
     private void RunEditorLevel()
