@@ -7,7 +7,8 @@ public class LevelButton : MonoBehaviour
     public event System.Action<LevelButton> OnClicked;
 
     [SerializeField]
-    private LevelSettings level;
+    private int levelIndex;
+    public int LevelIndex => levelIndex;
 
     private Button button;
 
@@ -16,17 +17,20 @@ public class LevelButton : MonoBehaviour
         button = GetComponent<Button>();
     }
 
-    public void Init(LevelSettings level)
+    public void Init(int level)
     {
-        this.level = level;
+        this.levelIndex = level;
     }
 
     private void OnEnable()
     {
         button.onClick.AddListener(InvokeClicked);
     }
-    
-    private void InvokeClicked() => OnClicked?.Invoke(this);
+
+    private void InvokeClicked()
+    {
+        OnClicked?.Invoke(this);
+    }
 
     private void OnDisable()
     {

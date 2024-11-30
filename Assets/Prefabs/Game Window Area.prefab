@@ -46,6 +46,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4784837275040035524}
   - component: {fileID: 707156787819635227}
+  - component: {fileID: 7872875013731520963}
   m_Layer: 0
   m_Name: Game Log
   m_TagString: Untagged
@@ -85,3 +86,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logLinePrefab: {fileID: 5604741433868359150, guid: 4620d7e4d9da1cc48800be4ee206cbc0, type: 3}
+--- !u!114 &7872875013731520963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6880583671903548849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
