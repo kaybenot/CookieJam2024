@@ -5,6 +5,7 @@ public delegate void HealthChangeEventHandler(int health, int maxHealth);
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     public event HealthChangeEventHandler OnHealthChanged;
 
     [field: SerializeField] public SigilTree SigilTree { get; private set; } = new();
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
         Health -= dmg;
         OnHealthChanged?.Invoke(Health, MaxHealth);
         OnHitReceived?.Invoke();
+        animator.SetTrigger("Hit");
         if (Health <= 0)
         {
             OnDeath?.Invoke();
