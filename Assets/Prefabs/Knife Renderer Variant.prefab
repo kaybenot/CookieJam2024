@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   degreePerSecond: 180
-  heightDiff: 0.4
+  heightDiff: 0.1
 --- !u!1 &2398394645734524738
 GameObject:
   m_ObjectHideFlags: 0
