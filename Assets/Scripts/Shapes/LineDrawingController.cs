@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -138,6 +139,14 @@ public class LineDrawingController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.white;
+        for (int i = 1; i < normalizedPoints.Count; i++)
+        {
+            var start = normalizedPoints[i - 1];
+            var end = normalizedPoints[i];
+            Gizmos.DrawLine(start, end);
+        }
+
         foreach (var shape in checkedShapes)
         {
             Gizmos.color = shape.Color;
