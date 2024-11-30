@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LineDrawingController : MonoBehaviour
@@ -17,6 +18,9 @@ public class LineDrawingController : MonoBehaviour
     [SerializeField]
     private float minPointsDistance = 0.1f;
 
+    [SerializeField]
+    private LineShape[] checkedShapes;
+
     private void OnEnable()
     {
         mouseInputEventProvider.OnPressed += MouseInputEventProvider_OnPressed;
@@ -31,8 +35,30 @@ public class LineDrawingController : MonoBehaviour
 
     private void MouseInputEventProvider_OnReleased()
     {
-        linePoints.Clear();
         lineRenderer.positionCount = 0;
+
+        var points2D = new Vector2[linePoints.Count];
+        for (int i = 0; i < linePoints.Count; i++)
+            points2D[i] = (Vector2)linePoints[i];
+
+        ShapesHelper.GetNormalizedPoints(points2D, points2D);
+
+        int bestShapeIndex = 0;
+        float bestShapeValue = float.MaxValue; 
+        for (int i = 0; i < checkedShapes.Length; i++)
+        {
+            var shape = checkedShapes[i];
+            var shapeValue = ShapesHelper.Distance(shape, points2D);
+            Debug.Log($"{checkedShapes[i].name} has distance {shapeValue}");
+            if (shapeValue < bestShapeValue)
+            {
+                bestShapeIndex = i;
+                bestShapeValue = shapeValue;
+            }
+        }
+
+        Debug.Log($"Best shape: {checkedShapes[bestShapeIndex].name}");
+        linePoints.Clear();
     }
 
     private void Update()

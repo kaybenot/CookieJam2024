@@ -276,7 +276,7 @@ Camera:
   m_GameObject: {fileID: 1326101050}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -414,6 +414,13 @@ MonoBehaviour:
   lineDepth: 0.5
   linePoints: []
   minPointsDistance: 0.01
+  checkedShapes:
+  - {fileID: 11400000, guid: 10a843806c6bd1648adaf3030035d3cb, type: 2}
+  - {fileID: 11400000, guid: 01cd37ad6eecf9d469ac354989fa1292, type: 2}
+  - {fileID: 11400000, guid: eb3320f78f8deae45bf2491419b30488, type: 2}
+  - {fileID: 11400000, guid: bb2639c6c21941840a3019703008bf21, type: 2}
+  - {fileID: 11400000, guid: a4493df03c3e191449b5bc6b99b6d457, type: 2}
+  - {fileID: 11400000, guid: 53fe43dd365e2a54fa6188f64f644fe7, type: 2}
 --- !u!120 &1880831865
 LineRenderer:
   serializedVersion: 2
