@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [field: SerializeField] public SigilTree SigilTree { get; private set; } = new();
+    
     public Action<int, int> OnHealthChanged { get; set; }
     public Action OnHitReceived { get; set; }
     public Action OnDeath { get; set; }
 
-    public int Health { get; private set; }
-    public int MaxHealth { get; private set; }
+    [field: SerializeField] public int Health { get; private set; }
+    [field: SerializeField] public int MaxHealth { get; private set; }
 
     public void Damage(int dmg)
     {
