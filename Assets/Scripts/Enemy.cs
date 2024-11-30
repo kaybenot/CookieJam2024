@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float backflipInterval = 5f;
+    [field: SerializeField] public EnemyStats Stats { get; set; }
 
     public Action<int> OnAttack { get; set; }
     public Action<string> OnBehaviourCommand { get; set; }
