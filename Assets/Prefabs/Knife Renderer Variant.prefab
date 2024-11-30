@@ -315,6 +315,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2106591771377829896, guid: a9f0318766412b64dac8959759c36c79, type: 3}
+      propertyPath: m_Range
+      value: 13.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106591771377829896, guid: a9f0318766412b64dac8959759c36c79, type: 3}
+      propertyPath: m_Color.g
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106591771377829896, guid: a9f0318766412b64dac8959759c36c79, type: 3}
+      propertyPath: m_Intensity
+      value: 3.91
+      objectReference: {fileID: 0}
     - target: {fileID: 4238034335448532299, guid: a9f0318766412b64dac8959759c36c79, type: 3}
       propertyPath: m_Name
       value: Knife camera
@@ -333,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5485310565081111436, guid: a9f0318766412b64dac8959759c36c79, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.523
+      value: -47.523003
       objectReference: {fileID: 0}
     - target: {fileID: 5485310565081111436, guid: a9f0318766412b64dac8959759c36c79, type: 3}
       propertyPath: m_LocalRotation.w
