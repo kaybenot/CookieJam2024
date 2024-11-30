@@ -15,12 +15,7 @@ public class WorldShapeRenderer : ShapeRenderer
         lineRenderer = GetComponent<LineRenderer>();
     }
 
-    private void OnEnable()
-    {
-        shapesDrawingController.OnPointAdded += ShapesDrawingController_OnPointAdded;
-    }
-
-    private void ShapesDrawingController_OnPointAdded(int pointIndex)
+    protected override void OnPointAdded(int pointIndex)
     {
         var newPoint = shapesDrawingController.LinePoints[pointIndex];
         var worldPosition = ScreenToWorldPosition(newPoint);
@@ -52,10 +47,4 @@ public class WorldShapeRenderer : ShapeRenderer
         var worldPosition = viewCamera.ScreenToWorldPoint(screenPoint);
         return worldPosition;
     }
-
-    private void OnDisable()
-    {
-        shapesDrawingController.OnPointAdded -= ShapesDrawingController_OnPointAdded;
-    }
 }
-
