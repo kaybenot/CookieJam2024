@@ -1,10 +1,19 @@
+using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private LevelSettings editorLevel;
+    
+    public Action<Enemy> OnEnemySpawned { get; set; }
+    public Action<Enemy> OnEnemyDefeated { get; set; }
+    public Action OnRoomSpawned { get; set; }
+    public Action OnLevelStarted { get; set; }
+
+    [CanBeNull] public Level CurrentLevel => currentLevel;
     
     private Level currentLevel = null;
 
@@ -27,6 +36,11 @@ public class LevelManager : MonoBehaviour
     {
         ReleaseLevel();
         currentLevel = new Level(settings);
+        currentLevel.OnEnemySpawned += (enemy) => OnEnemySpawned?.Invoke(enemy);
+        currentLevel.OnEnemyDefeated += (enemy) => OnEnemyDefeated?.Invoke(enemy);
+        currentLevel.OnRoomSpawned += () => OnRoomSpawned?.Invoke();
+        currentLevel.Initialize();
+        OnLevelStarted?.Invoke();
     }
 
     public void ReleaseLevel()
