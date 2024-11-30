@@ -24,6 +24,7 @@ public class LineShape : ScriptableObject
 
     [SerializeField]
     private Color color = Color.white;
+    public Color Color => color;
 
 
     [ContextMenu("Normalize")]
@@ -68,7 +69,6 @@ public static class ShapesHelper
         for (int j = 0; j < line.Count; j++)
         {
             var point = line[j];
-
             float minSqrDistance = float.MaxValue;
             for (int i = 1; i < shape.PointsNormalized.Count; i++)
             {
@@ -82,7 +82,7 @@ public static class ShapesHelper
             sqrDistancesSum += minSqrDistance;
         }
 
-        return sqrDistancesSum;
+        return sqrDistancesSum / line.Count;
     }
 }
 

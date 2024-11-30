@@ -96,4 +96,19 @@ public class LineDrawingController : MonoBehaviour
         mouseInputEventProvider.OnPressed -= MouseInputEventProvider_OnPressed;
         mouseInputEventProvider.OnReleased -= MouseInputEventProvider_OnReleased;
     }
+
+    private void OnDrawGizmos()
+    {
+        foreach (var shape in checkedShapes)
+        {
+            Gizmos.color = shape.Color;
+            for (int i = 1; i < shape.PointsNormalized.Count; i++)
+            {
+                var start = shape.PointsNormalized[i - 1];
+                var end = shape.PointsNormalized[i];
+                Gizmos.DrawLine(start, end);
+            }
+        }
+    }
 }
+
