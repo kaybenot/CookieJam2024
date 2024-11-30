@@ -1,12 +1,15 @@
 using System;
 using UnityEngine;
 
+public delegate void HealthChangeEventHandler(int health, int maxHealth);
+
 public class Player : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [field: SerializeField] public SigilTree SigilTree { get; private set; } = new();
+    public event HealthChangeEventHandler OnHealthChanged;
 
-    public Action<int, int> OnHealthChanged { get; set; }
+    [field: SerializeField] public SigilTree SigilTree { get; private set; } = new();
+    
     public Action OnHitReceived { get; set; }
     public Action OnDeath { get; set; }
 

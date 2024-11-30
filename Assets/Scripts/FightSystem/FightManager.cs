@@ -1,11 +1,17 @@
-using System;
 using UnityEngine;
+
+public class EnemySigilDisplay : MonoBehaviour
+{
+
+}
 
 public class FightManager : MonoBehaviour
 {
+    [SerializeField] private SigilsSettings sigilsSettings;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private Player player;
-    [SerializeField] private GameObject shapesController;
+    [SerializeField] private ShapesDrawingController shapesController;
+    [SerializeField] private EnemySigilDisplay enemySigilDisplay;
 
     private bool fighting = false;
     private float lastTimeEnemyAttacked = 0f;
@@ -16,7 +22,7 @@ public class FightManager : MonoBehaviour
         levelManager.OnEnemySpawned += BeginFight;
         levelManager.OnEnemyDefeated += EndFight;
         
-        shapesController.SetActive(false);
+        shapesController.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
@@ -34,7 +40,7 @@ public class FightManager : MonoBehaviour
         enemy.OnAttack += OnEnemyAttack;
 
         fighting = true;
-        shapesController.SetActive(true);
+        shapesController.gameObject.SetActive(true);
     }
     
     private void EndFight(Enemy enemy)
@@ -43,7 +49,7 @@ public class FightManager : MonoBehaviour
         currentEnemy = null;
 
         fighting = false;
-        shapesController.SetActive(false);
+        shapesController.gameObject.SetActive(false);
     }
 
     private void OnEnemyAttack(Sigil sigil)
@@ -65,7 +71,6 @@ public class FightManager : MonoBehaviour
         }
 
         lastTimeEnemyAttacked = Time.time;
-        
         currentEnemy.Attack();
     }
 }

@@ -6,6 +6,7 @@ public delegate void ShapePointAddedEventHandler(int pointIndex);
 public class ShapesDrawingController : MonoBehaviour
 {
     public event ShapePointAddedEventHandler OnPointAdded;
+    public event System.Action<LineShape> OnShapeDrawn;
 
     [SerializeField]
     private MouseInputEventProvider mouseInputEventProvider;
@@ -84,6 +85,8 @@ public class ShapesDrawingController : MonoBehaviour
     private void MouseInputEventProvider_OnReleased()
     {
         RecognizeShape();
+        if (bestShape != null)
+            OnShapeDrawn?.Invoke(bestShape);
         Clear();
     }
 

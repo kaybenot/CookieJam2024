@@ -171,6 +171,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8058427312028167888, guid: c95195a388ffa92439f0024fabbdbc5f, type: 3}
+      propertyPath: checkedShapes.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058427312028167888, guid: c95195a388ffa92439f0024fabbdbc5f, type: 3}
+      propertyPath: 'checkedShapes.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a4493df03c3e191449b5bc6b99b6d457, type: 2}
+    - target: {fileID: 8058427312028167888, guid: c95195a388ffa92439f0024fabbdbc5f, type: 3}
+      propertyPath: 'checkedShapes.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 53fe43dd365e2a54fa6188f64f644fe7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -181,17 +193,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8058427312028167888, guid: c95195a388ffa92439f0024fabbdbc5f, type: 3}
   m_PrefabInstance: {fileID: 320353976}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 498062077}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a4c382aa7f574c4f9bb9c5332b29e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &498062077 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3124267485473509953, guid: c95195a388ffa92439f0024fabbdbc5f, type: 3}
-  m_PrefabInstance: {fileID: 320353976}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &531532516
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,8 +330,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531532516}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.0401244, y: -0.3924282, z: 0.017138496, w: 0.9187472}
+  m_LocalPosition: {x: 4.0899997, y: 2.53, z: -1.1699998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -677,7 +684,7 @@ PrefabInstance:
     - target: {fileID: 3934269751559291584, guid: 9486cdebbc481a947bb43bd198664501, type: 3}
       propertyPath: shapesController
       value: 
-      objectReference: {fileID: 498062077}
+      objectReference: {fileID: 320353977}
     - target: {fileID: 5324529356263461692, guid: 9486cdebbc481a947bb43bd198664501, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -817,6 +824,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+  m_CurrentSelected: {fileID: 0}
 --- !u!4 &1752715038
 Transform:
   m_ObjectHideFlags: 0
