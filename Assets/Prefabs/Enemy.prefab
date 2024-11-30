@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backflipInterval: 8
-  <Stats>k__BackingField:
+  stats:
     Health: 0
     Sigils: []
 --- !u!114 &8000288786684273929
@@ -80,15 +80,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5675376751202606405, guid: 6fa0e9c3305667d4d809bc7e905032dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.66
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5675376751202606405, guid: 6fa0e9c3305667d4d809bc7e905032dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.58579874
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5675376751202606405, guid: 6fa0e9c3305667d4d809bc7e905032dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5675376751202606405, guid: 6fa0e9c3305667d4d809bc7e905032dc, type: 3}
       propertyPath: m_LocalRotation.w

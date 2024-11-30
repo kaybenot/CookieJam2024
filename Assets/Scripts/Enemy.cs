@@ -5,10 +5,11 @@ public class Enemy : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float backflipInterval = 5f;
-    [field: SerializeField] public EnemyStats Stats { get; set; }
+    [SerializeField] private EnemyStats stats;
 
     public Action<int> OnAttack { get; set; }
     public Action<string> OnBehaviourCommand { get; set; }
+    public Action<Enemy> OnDeath { get; set; }
 
     private float lastBackflipTime;
 
@@ -20,6 +21,16 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         TryBackflip();
+    }
+
+    public void Damage(int dmg)
+    {
+        stats.Health -= dmg;
+        if (stats.Health <= 0)
+        {
+            OnDeath?.Invoke(this);
+            Destroy(gameObject);
+        }
     }
 
     private void TryBackflip()
