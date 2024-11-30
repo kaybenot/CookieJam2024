@@ -4,6 +4,7 @@ using UnityEngine;
 public class FightManager : MonoBehaviour
 {
     [SerializeField] private LevelManager levelManager;
+    [SerializeField] private Player player;
 
     private void Awake()
     {
