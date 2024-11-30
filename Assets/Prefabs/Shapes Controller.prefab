@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4356272804912266511}
   - component: {fileID: 8058427312028167888}
   - component: {fileID: 9073242183280967174}
+  - component: {fileID: 3304964525316143180}
   m_Layer: 0
   m_Name: Shapes Controller
   m_TagString: Untagged
@@ -53,7 +54,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10a843806c6bd1648adaf3030035d3cb, type: 2}
   - {fileID: 11400000, guid: 01cd37ad6eecf9d469ac354989fa1292, type: 2}
   - {fileID: 11400000, guid: eb3320f78f8deae45bf2491419b30488, type: 2}
-  - {fileID: 11400000, guid: bb2639c6c21941840a3019703008bf21, type: 2}
   - {fileID: 11400000, guid: a4493df03c3e191449b5bc6b99b6d457, type: 2}
   - {fileID: 11400000, guid: 53fe43dd365e2a54fa6188f64f644fe7, type: 2}
   normalizedPoints: []
@@ -73,4 +73,20 @@ MonoBehaviour:
   pressInputActionReference: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   mouseDelta: {x: 0, y: 0}
   deltaThreshold: 2
-  isPressed: 0
+  isDragging: 0
+--- !u!114 &3304964525316143180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3124267485473509953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5db7ad4c267a6e44b462ddadeb787d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapesDrawingController: {fileID: 8058427312028167888}
+  drawnShapes: []
+  resetCooldown: 1
+  timer: 0
