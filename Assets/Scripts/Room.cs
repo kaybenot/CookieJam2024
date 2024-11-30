@@ -5,6 +5,10 @@ using UnityEngine.Events;
 public class Room : MonoBehaviour
 {
     public Action OnNextRoomRequest { get; set; }
+    public Action OnDoorsUnlocked { get; set; }
+    public Action<Enemy> OnEnemySpawned { get; set; }
+    public Action<Enemy> OnEnemyDefeated { get; set; }
+    public EnemySpawner Spawner { get; private set; }
 
     public void Initialize(LevelSettings settings)
     {
@@ -14,7 +18,10 @@ public class Room : MonoBehaviour
             {
                 continue;
             }
-            
+
+            Spawner = spawner;
+            spawner.OnEnemyDefeated += enemy => OnEnemyDefeated?.Invoke(enemy); 
+            spawner.OnEnemySpawned += enemy => OnEnemySpawned?.Invoke(enemy); 
             spawner.Spawn(settings);
             spawner.OnEnemyDefeated += UnlockDoors;
         }
@@ -34,6 +41,8 @@ public class Room : MonoBehaviour
         {
             door.Locked = false;
         }
+        
+        OnDoorsUnlocked?.Invoke();
     }
 
     public void GoToNextRoom()
