@@ -82,7 +82,7 @@ public static class ShapesHelper
             sqrDistancesSum += minSqrDistance;
         }
 
-        return sqrDistancesSum / line.Count;
+        return sqrDistancesSum;
     }
 }
 
