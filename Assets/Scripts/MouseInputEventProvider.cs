@@ -56,6 +56,6 @@ public class MouseInputEventProvider : MonoBehaviour
     private void OnDisable()
     {
         pressInputAction.action.canceled -= Action_canceled;
-        pressInputAction.action.Disable();
+        //pressInputAction.action.Disable();
     }
 }

@@ -46,10 +46,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7690e39b258e97e40b1ad00ac3e5b88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backflipInterval: 8
+  backflipInterval: 5
   stats:
-    Health: 0
-    Sigils: []
+    Health: 5
+    Sigils:
+    - Name: 
+      Shape:
+      - {fileID: 11400000, guid: 10a843806c6bd1648adaf3030035d3cb, type: 2}
+      Damage: 1
+      HealthCost: 0
+    TimeToAttack: 6.5
 --- !u!114 &8000288786684273929
 MonoBehaviour:
   m_ObjectHideFlags: 0
