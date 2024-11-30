@@ -16,7 +16,6 @@ public class LevelManager : MonoBehaviour
     [CanBeNull] public Level CurrentLevel => currentLevel;
     
     private Level currentLevel = null;
-    public Level CurrentLevel => currentLevel;
 
     [ContextMenu("Run editorLevel")]
     private void RunEditorLevel()

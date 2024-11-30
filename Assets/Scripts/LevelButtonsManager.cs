@@ -14,14 +14,20 @@ public class LevelButtonsManager : MonoBehaviour
         int levelsCount = hubController.UnlockedLevelsCount;
         for (int i = 0; i < levelsCount; i++)
         {
-            SpawnButton(hubController.Levels.GetLevel(i));
+            SpawnButton(i);
         }
     }
 
-    private void SpawnButton(LevelSettings level)
+    private void SpawnButton(int levelIndex)
     {
         var button = Instantiate(buttonPrototype, buttonsContainer);
-        button.Init(level);
+        button.Init(levelIndex);
+        button.OnClicked += Button_OnClicked;
+    }
+
+    private void Button_OnClicked(LevelButton button)
+    {
+        hubController.StartLevel(button.LevelIndex);
     }
 
     private void OnEnable()
@@ -32,8 +38,7 @@ public class LevelButtonsManager : MonoBehaviour
     private void HubController_OnLevelUnlocked()
     {
         int levelNumber = hubController.UnlockedLevelsCount - 1;
-        var level = hubController.Levels.GetLevel(levelNumber);
-        SpawnButton(level);
+        SpawnButton(levelNumber);
     }
 
     private void OnDisable()
