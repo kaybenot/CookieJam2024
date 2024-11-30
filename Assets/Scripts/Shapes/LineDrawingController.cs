@@ -56,8 +56,10 @@ public class LineDrawingController : MonoBehaviour
                 bestShapeValue = shapeValue;
             }
         }
-
-        Debug.Log($"Best shape: {checkedShapes[bestShapeIndex].name}");
+        if (bestShapeValue > 1)
+            Debug.Log($"Best shape: NONE");
+        else 
+            Debug.Log($"Best shape: {checkedShapes[bestShapeIndex].name}");
         linePoints.Clear();
     }
 
