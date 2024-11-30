@@ -1,10 +1,12 @@
 ﻿using Radishmouse;
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(UILineRenderer))]
 public class CanvasShapeRenderer : ShapeRenderer
 {
+    [SerializeField]
+    private Canvas canvas;
+
     private UILineRenderer lineRenderer;
 
     private bool wasDrawing;
@@ -29,8 +31,10 @@ public class CanvasShapeRenderer : ShapeRenderer
             lineRenderer.AddPoint(default);
 
         int lastIndex = lineRenderer.Points.Count - 1;
-        lineRenderer.SetPosition(lastIndex, shapesDrawingController.LastPoint);
-        lineRenderer.SetPosition(lastIndex - 1, point);
+
+        float scaleFactor = 1f / canvas.scaleFactor;
+        lineRenderer.SetPosition(lastIndex, scaleFactor * shapesDrawingController.LastPoint);
+        lineRenderer.SetPosition(lastIndex - 1, scaleFactor * point);
     }
 
     private void Update()
@@ -47,7 +51,7 @@ public class CanvasShapeRenderer : ShapeRenderer
 
         lineRenderer.enabled = isDrawing;
         if (isDrawing)
-            lineRenderer.SetPosition(lineRenderer.Points.Count - 1, shapesDrawingController.LastPoint);
+            lineRenderer.SetPosition(lineRenderer.Points.Count - 1, shapesDrawingController.LastPoint / canvas.scaleFactor);
 
         wasDrawing = isDrawing;
     }
