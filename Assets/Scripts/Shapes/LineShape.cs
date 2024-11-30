@@ -37,7 +37,7 @@ public static class ShapesHelper
 {
     public static void GetNormalizedPoints(IReadOnlyList<Vector2> points, IList<Vector2> normalizedPoints)
     {
-        int count = points.Count;
+        int count = Mathf.Min(points.Count, normalizedPoints.Count);
         var min = Vector2.positiveInfinity;
         var max = Vector2.negativeInfinity;
         var centroid = new Vector2();
