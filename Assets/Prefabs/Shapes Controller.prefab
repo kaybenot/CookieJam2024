@@ -70,4 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0805a8367c3acd248ac77119c4d37f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pressInputActionReference: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  mouseDelta: {x: 0, y: 0}
+  deltaThreshold: 2
   isPressed: 0

@@ -52,7 +52,7 @@ public class ShapesDrawingController : MonoBehaviour
 
     private void Update()
     {
-        IsDrawing = mouseInputEventProvider.IsPressed;
+        IsDrawing = mouseInputEventProvider.IsDragging;
         lastPoint = GetCurrentMouseScreenPosition();
         if (IsDrawing)
         {

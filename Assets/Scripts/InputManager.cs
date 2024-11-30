@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Object = UnityEngine.Object;
@@ -35,7 +34,7 @@ public class InputManager
 
     private void RegisterCallbacks()
     {
-        playerInput.actions["Attack"].started += (callback) =>
+        playerInput.actions["Attack"].performed += (callback) =>
         {
             var mousePos = Input.mousePosition;
             OnLeftClick?.Invoke(mousePos.x, mousePos.y);

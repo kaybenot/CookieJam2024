@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseInputEventProvider : MonoBehaviour
 {
@@ -6,20 +7,55 @@ public class MouseInputEventProvider : MonoBehaviour
     public event System.Action OnReleased;
 
     [SerializeField]
-    private bool isPressed;
-    public bool IsPressed => isPressed;
+    private InputActionReference pressInputActionReference;
+    private InputActionReference pressInputAction;
+
+    [SerializeField]
+    private Vector2 mouseDelta;
+
+    [SerializeField]
+    private float deltaThreshold = 2;
+
+    [SerializeField]
+    private bool isDragging;
+    public bool IsDragging => isDragging;
+
+    private void OnEnable()
+    {
+        pressInputAction = Instantiate(pressInputActionReference);
+        pressInputAction.action.Enable();
+        pressInputAction.action.canceled += Action_canceled;
+    }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        mouseDelta = Mouse.current.delta.value;
+        if (isDragging == false && pressInputAction.action.IsInProgress() && mouseDelta.sqrMagnitude > deltaThreshold * deltaThreshold)
         {
-            isPressed = true;
-            OnPressed?.Invoke();
+            StartDragging();       
         }
-        else if (Input.GetMouseButtonUp(0))
+        
+        else if (isDragging && Input.GetMouseButtonUp(0))
         {
-            isPressed = false;
+            isDragging = false;
             OnReleased?.Invoke();
         }
+    }
+
+    private void Action_canceled(InputAction.CallbackContext obj) => StartDragging();
+
+    private void StartDragging()
+    {
+        if (isDragging)
+            return;
+
+        isDragging = true;
+        OnPressed?.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        pressInputAction.action.canceled -= Action_canceled;
+        pressInputAction.action.Disable();
     }
 }
