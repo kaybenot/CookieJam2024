@@ -32,6 +32,11 @@ public class LineShape : ScriptableObject
     {
         ShapesHelper.GetNormalizedPoints(points, points);
     }
+
+    private void OnValidate()
+    {
+        pointsNormalized = null;
+    }
 }
 
 public static class ShapesHelper
@@ -65,12 +70,13 @@ public static class ShapesHelper
 
     public static float Distance(LineShape shape, IReadOnlyList<Vector2> line)
     {
+        int shapePointsCount = shape.PointsNormalized.Count;
         float sqrDistancesSum = 0;
         for (int j = 0; j < line.Count; j++)
         {
             var point = line[j];
             float minSqrDistance = float.MaxValue;
-            for (int i = 1; i < shape.PointsNormalized.Count; i++)
+            for (int i = 1; i < shapePointsCount; i++)
             {
                 var start = shape.PointsNormalized[i - 1];
                 var end = shape.PointsNormalized[i];
@@ -82,7 +88,8 @@ public static class ShapesHelper
             sqrDistancesSum += minSqrDistance;
         }
 
-        return sqrDistancesSum;
+        int shapeLinesCount = shapePointsCount - 1;
+        return sqrDistancesSum; // shapePointsCount;
     }
 }
 

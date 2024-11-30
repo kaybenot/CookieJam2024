@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class LineDrawingController : MonoBehaviour
@@ -14,12 +13,19 @@ public class LineDrawingController : MonoBehaviour
     [SerializeField]
     private float lineDepth = 1;
     [SerializeField]
-    private List<Vector3> linePoints;
+    private List<Vector2> linePoints;
     [SerializeField]
     private float minPointsDistance = 0.1f;
 
     [SerializeField]
     private LineShape[] checkedShapes;
+
+    [SerializeField]
+    private List<Vector2> normalizedPoints;
+
+    [Header("Debug")]
+    public Vector2 mousePosition;
+    public LineShape bestShape;
 
     private void OnEnable()
     {
@@ -29,38 +35,15 @@ public class LineDrawingController : MonoBehaviour
 
     private void MouseInputEventProvider_OnPressed()
     {
-        linePoints.Clear();
-        AddLinePoint(GetCurrentMouseWorldPosition());
+        bestShape = null;
+        Clear();
+        AddLinePoint(GetCurrentMouseScreenPosition());
     }
 
-    private void MouseInputEventProvider_OnReleased()
+    public void Clear()
     {
-        lineRenderer.positionCount = 0;
-
-        var points2D = new Vector2[linePoints.Count];
-        for (int i = 0; i < linePoints.Count; i++)
-            points2D[i] = (Vector2)linePoints[i];
-
-        ShapesHelper.GetNormalizedPoints(points2D, points2D);
-
-        int bestShapeIndex = 0;
-        float bestShapeValue = float.MaxValue; 
-        for (int i = 0; i < checkedShapes.Length; i++)
-        {
-            var shape = checkedShapes[i];
-            var shapeValue = ShapesHelper.Distance(shape, points2D);
-            Debug.Log($"{checkedShapes[i].name} has distance {shapeValue}");
-            if (shapeValue < bestShapeValue)
-            {
-                bestShapeIndex = i;
-                bestShapeValue = shapeValue;
-            }
-        }
-        if (bestShapeValue > 1)
-            Debug.Log($"Best shape: NONE");
-        else 
-            Debug.Log($"Best shape: {checkedShapes[bestShapeIndex].name}");
         linePoints.Clear();
+        normalizedPoints.Clear();
     }
 
     private void Update()
@@ -69,28 +52,82 @@ public class LineDrawingController : MonoBehaviour
         lineRenderer.enabled = isDrawing;
         if (isDrawing)
         {
-            var currentMousePoint = GetCurrentMouseWorldPosition();
-            float sqrDistance = (currentMousePoint - linePoints[^1]).sqrMagnitude;
-            if (sqrDistance > minPointsDistance * minPointsDistance)
-            {
-                AddLinePoint(currentMousePoint);
-            }
-            lineRenderer.SetPosition(lineRenderer.positionCount - 1, currentMousePoint);
+            UpdateShape();
         }
     }
 
-    private void AddLinePoint(Vector3 newPoint)
+    private void UpdateShape()
     {
-        linePoints.Add(newPoint);
-        lineRenderer.positionCount = linePoints.Count + 1;
-        lineRenderer.SetPosition(lineRenderer.positionCount - 2, linePoints[^1]);
+        var currentMousePoint = GetCurrentMouseScreenPosition();
+        float sqrDistance = (currentMousePoint - linePoints[^1]).sqrMagnitude;
+        if (sqrDistance > minPointsDistance * minPointsDistance)
+        {
+            AddLinePoint(currentMousePoint);
+            RecognizeShape();
+        }
+
+        var mouseWorldPosition = ScreenToWorldPosition(currentMousePoint);
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, mouseWorldPosition);
     }
 
-    private Vector3 GetCurrentMouseWorldPosition()
+    private void AddLinePoint(Vector2 newPoint)
+    {
+        linePoints.Add(newPoint);
+        var worldPosition = ScreenToWorldPosition(newPoint);
+
+        lineRenderer.positionCount = linePoints.Count + 1;
+        lineRenderer.SetPosition(lineRenderer.positionCount - 2, worldPosition);
+
+        normalizedPoints.Add(new Vector2());
+        ShapesHelper.GetNormalizedPoints(linePoints, normalizedPoints);
+    }
+
+    private Vector2 GetCurrentMouseScreenPosition()
     {
         var mousePosition = Input.mousePosition;
-        mousePosition.z = lineDepth;
-        return viewCamera.ScreenToWorldPoint(mousePosition);
+        return mousePosition;
+    }
+
+    private Vector3 ScreenToWorldPosition(Vector3 screenPoint)
+    {
+        screenPoint.z = lineDepth;
+        var worldPosition = viewCamera.ScreenToWorldPoint(screenPoint);
+        return worldPosition;
+    }
+
+    private void MouseInputEventProvider_OnReleased()
+    {
+        lineRenderer.positionCount = 0;
+        RecognizeShape();
+        Clear();
+    }
+
+    private void RecognizeShape()
+    {
+        int bestShapeIndex = 0;
+        float bestShapeValue = float.MaxValue;
+        for (int i = 0; i < checkedShapes.Length; i++)
+        {
+            var shape = checkedShapes[i];
+            var shapeValue = ShapesHelper.Distance(shape, normalizedPoints);
+            Debug.Log($"{checkedShapes[i].name} has distance {shapeValue}");
+            if (shapeValue < bestShapeValue)
+            {
+                bestShapeIndex = i;
+                bestShapeValue = shapeValue;
+            }
+        }
+
+        if (bestShapeValue > 100)
+        {
+            bestShape = null;
+            Debug.Log($"Best shape: NONE");
+        }
+        else
+        {
+            bestShape = checkedShapes[bestShapeIndex];
+            Debug.Log($"Best shape: {bestShape.name}");
+        }
     }
 
     private void OnDisable()
