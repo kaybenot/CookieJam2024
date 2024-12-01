@@ -444,6 +444,10 @@ PrefabInstance:
       value: Game UI
       objectReference: {fileID: 0}
     - target: {fileID: 987438321124838541, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
+      propertyPath: playerSigilsController
+      value: 
+      objectReference: {fileID: 1609158765}
+    - target: {fileID: 987438321124838541, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
       propertyPath: shapesDrawingController
       value: 
       objectReference: {fileID: 320353977}

@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerSigilsController : MonoBehaviour
 {
     public event System.Action<Sigil> OnSigilDrawn;
+    public event System.Action<LineShape> OnShapeDrawn;
 
     [Header("Settings")]
     [SerializeField]
@@ -14,18 +15,24 @@ public class PlayerSigilsController : MonoBehaviour
     private Player player;
     [SerializeField]
     private float resetCooldown;
+    [SerializeField]
+    private float recognitionThreshold;
 
     [Header("States")]
     [SerializeField]
     private List<LineInstance> drawnShapes;
     [SerializeField]
-    private List<LineShape> recognizedShapes;
+    private List<LineShape> recognizedDrawnShapes;
     [SerializeField]
     private float timer;
+    [SerializeField]
+    private LineShape bestShape;
+    public LineShape BestShape => bestShape;
 
     private void Awake()
     {
         drawnShapes.Clear();
+        recognizedDrawnShapes.Clear();
     }
 
     private void OnEnable()
@@ -44,12 +51,15 @@ public class PlayerSigilsController : MonoBehaviour
         timer = 0;
         if (TryRecognizeShape(lineShape, out var shape))
         {
-            recognizedShapes.Add(shape);
+            recognizedDrawnShapes.Add(shape);
+            OnShapeDrawn?.Invoke(shape);
         }
     }
 
     private void Update()
     {
+        bestShape = GetCurrentlyDrawnShape();
+
         if (shapesDrawingController.IsDrawing)
             return;
         if (timer > resetCooldown)
@@ -63,9 +73,19 @@ public class PlayerSigilsController : MonoBehaviour
         }
     }
 
-    private void CancelChain()
+    private LineShape GetCurrentlyDrawnShape()
     {
-        if (player.TryGetSigil(recognizedShapes, out var sigil))
+        if (shapesDrawingController.CurrentlyDrawnShape == null)
+            return null;
+
+        return TryRecognizeShape(shapesDrawingController.CurrentlyDrawnShape, out var recognized)
+            ? null
+            : recognized;
+    }
+
+    public void CancelChain()
+    {
+        if (player.TryGetSigil(recognizedDrawnShapes, out var sigil))
         {
             GameLog.Instance.Log($"Sigil: {sigil.Name}");
             OnSigilDrawn?.Invoke(sigil);
@@ -76,7 +96,7 @@ public class PlayerSigilsController : MonoBehaviour
                 Destroy(line.gameObject);
 
         drawnShapes.Clear();
-        recognizedShapes.Clear();
+        recognizedDrawnShapes.Clear();
     }
 
     private bool TryRecognizeShape(LineInstance lineInstance, out LineShape recognized)
@@ -109,7 +129,6 @@ public class PlayerSigilsController : MonoBehaviour
 
         return recognized != null;
     }
-
 
     private void OnDisable()
     {

@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
 
     [Header("States")]
     [SerializeField] private bool isAttacking;
+    public bool IsAttacking => isAttacking;
 
     public float TimeToAttack => stats.TimeToAttack;
 
