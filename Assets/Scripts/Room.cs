@@ -4,10 +4,11 @@ using UnityEngine.Events;
 
 public class Room : MonoBehaviour
 {
-    public Action OnNextRoomRequest { get; set; }
-    public Action OnDoorsUnlocked { get; set; }
-    public Action<Enemy> OnEnemySpawned { get; set; }
-    public Action<Enemy> OnEnemyDefeated { get; set; }
+    public event Action OnNextRoomRequest;
+    public event Action OnDoorsUnlocked;
+    public event Action<Enemy> OnEnemySpawned;
+    public event Action<Enemy> OnEnemyDefeated;
+ 
     public EnemySpawner Spawner { get; private set; }
 
     public void Initialize(LevelSettings settings)
@@ -20,11 +21,16 @@ public class Room : MonoBehaviour
             }
 
             Spawner = spawner;
-            spawner.OnEnemyDefeated += enemy => OnEnemyDefeated?.Invoke(enemy); 
-            spawner.OnEnemySpawned += enemy => OnEnemySpawned?.Invoke(enemy); 
+            spawner.OnEnemyDefeated += enemy => OnEnemyDefeated?.Invoke(enemy);
+            spawner.OnEnemySpawned += Spawner_OnEnemySpawned;
             spawner.Spawn(settings);
             spawner.OnEnemyDefeated += UnlockDoors;
         }
+    }
+
+    private void Spawner_OnEnemySpawned(Enemy enemy)
+    {
+        OnEnemySpawned?.Invoke(enemy);
     }
 
     private void OnDestroy()
@@ -41,7 +47,7 @@ public class Room : MonoBehaviour
         {
             door.Locked = false;
         }
-        
+
         OnDoorsUnlocked?.Invoke();
     }
 

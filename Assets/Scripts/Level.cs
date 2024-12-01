@@ -30,9 +30,6 @@ public class Level
     {
         if (currentRoom != null)
         {
-            OnRoomSpawned = null;
-            OnEnemySpawned = null;
-            OnEnemyDefeated = null;
             Object.Destroy(currentRoom.gameObject);
         }
     }
@@ -47,7 +44,10 @@ public class Level
 
         currentRoom = Object.Instantiate(GetNextRoom()).GetComponent<Room>();
         currentRoom.OnNextRoomRequest += SpawnNextRoom;
-        currentRoom.OnEnemySpawned += (enemy) => OnEnemySpawned?.Invoke(enemy);
+        currentRoom.OnEnemySpawned += (enemy) =>
+        {
+            OnEnemySpawned?.Invoke(enemy);
+        };
         currentRoom.OnEnemyDefeated += (enemy) => OnEnemyDefeated?.Invoke(enemy);
         currentRoom.Initialize(LevelSettings);
         OnRoomSpawned?.Invoke();

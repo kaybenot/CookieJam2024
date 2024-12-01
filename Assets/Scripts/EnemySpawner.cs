@@ -4,8 +4,8 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public Action<Enemy> OnEnemySpawned { get; set; }
-    public Action<Enemy> OnEnemyDefeated { get; set; }
+    public event Action<Enemy> OnEnemySpawned;
+    public event Action<Enemy> OnEnemyDefeated;
 
     private Enemy currentEnemy = null;
 
