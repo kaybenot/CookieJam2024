@@ -5,7 +5,15 @@ using Object = UnityEngine.Object;
 
 public class InputManager
 {
-    public static InputManager Instance { get; private set; }
+    private static InputManager instance;
+    public static InputManager Instance
+    {
+        get
+        {
+            instance ??= new InputManager();
+            return instance;
+        }
+    }
     
     public Action<float, float> OnLeftClick { get; set; }
 

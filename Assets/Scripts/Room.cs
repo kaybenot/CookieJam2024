@@ -45,6 +45,7 @@ public class Room : MonoBehaviour
         OnDoorsUnlocked?.Invoke();
     }
 
+    // attached to button
     public void GoToNextRoom()
     {
         OnNextRoomRequest?.Invoke();

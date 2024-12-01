@@ -1,13 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Interactor : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private LayerMask interactableLayer;
-
-    private void Awake()
-    {
-    }
 
     private void Start()
     {

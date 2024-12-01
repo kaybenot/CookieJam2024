@@ -28,15 +28,23 @@ public class FightManager : MonoBehaviour
         lastTimeEnemyAttacked = Time.time;
         currentEnemy = enemy;
 
+        playerSigilsController.OnSigilDrawn += PlayerSigilsController_OnSigilDrawn;
         enemy.OnAttackStarted += Enemy_OnAttackStarted;
 
         fighting = true;
         shapesController.gameObject.SetActive(true);
     }
 
+    private void PlayerSigilsController_OnSigilDrawn(Sigil sigil)
+    {
+        currentEnemy.Damage(sigil.Damage);
+    }
+
     public void EndFight()
     {
         GameLog.Instance.Log("You have defeated an opponent");
+
+        playerSigilsController.OnSigilDrawn -= PlayerSigilsController_OnSigilDrawn;
         currentEnemy.OnAttackStarted -= Enemy_OnAttackStarted;
         currentEnemy = null;
 

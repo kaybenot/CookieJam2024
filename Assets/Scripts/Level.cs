@@ -23,7 +23,7 @@ public class Level
 
     public void Initialize()
     {
-        SpawnRoom(LevelSettings);
+        SpawnNextRoom();
     }
 
     public void Release()
@@ -37,19 +37,19 @@ public class Level
         }
     }
 
-    private void SpawnRoom(LevelSettings settings)
+    private void SpawnNextRoom()
     {
         if (currentRoom != null)
         {
-            currentRoom.OnNextRoomRequest -= () => SpawnRoom(settings);
+            currentRoom.OnNextRoomRequest -= SpawnNextRoom;
             Release();
         }
 
         currentRoom = Object.Instantiate(GetNextRoom()).GetComponent<Room>();
-        currentRoom.OnNextRoomRequest += () => SpawnRoom(settings);
+        currentRoom.OnNextRoomRequest += SpawnNextRoom;
         currentRoom.OnEnemySpawned += (enemy) => OnEnemySpawned?.Invoke(enemy);
         currentRoom.OnEnemyDefeated += (enemy) => OnEnemyDefeated?.Invoke(enemy);
-        currentRoom.Initialize(settings);
+        currentRoom.Initialize(LevelSettings);
         OnRoomSpawned?.Invoke();
         
     }

@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
 
     public void Damage(int dmg)
     {
+        GameLog.Instance.Log($"Enemy HP: {stats.Health}");
         stats.Health -= dmg;
         if (stats.Health <= 0)
         {
