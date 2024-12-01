@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerSigilsController : MonoBehaviour
 {
-    public event System.Action<Sigil> OnSigilDrawn;
+    public event System.Action<IReadOnlyList<LineShape>> OnSigilDrawn;
     public event System.Action<LineShape> OnShapeDrawn;
 
     [Header("Settings")]
@@ -85,11 +85,7 @@ public class PlayerSigilsController : MonoBehaviour
 
     public void CancelChain()
     {
-        if (player.TryGetSigil(recognizedDrawnShapes, out var sigil))
-        {
-            GameLog.Instance.Log($"Sigil: {sigil.Name}");
-            OnSigilDrawn?.Invoke(sigil);
-        }
+        OnSigilDrawn?.Invoke(recognizedDrawnShapes.ToArray());
 
         foreach (var line in drawnShapes)
             if (line)

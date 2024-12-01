@@ -12,12 +12,27 @@ public class UI : MonoBehaviour
     [SerializeField] private TMP_Text health;
     [SerializeField] private Button skillTreeButton;
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private AvailableAttacksPanel availableAttacksPanel;
 
     private void Awake()
     {
+        availableAttacksPanel.gameObject.SetActive(false);
         gameOverScreen.gameObject.SetActive(false);
         player.OnHealthChanged += UpdateHealth;
         fightManager.OnFailure += FightManager_OnFailure;
+        fightManager.OnFightStarted += FightManager_OnFightStarted;
+        fightManager.OnFightEnded += FightManager_OnFightEnded;
+    }
+
+    private void FightManager_OnFightStarted()
+    {
+        availableAttacksPanel.gameObject.SetActive(true);
+        availableAttacksPanel.SetSigils(fightManager.CurrentAvailableSigils);
+    }
+    private void FightManager_OnFightEnded()
+    {
+        availableAttacksPanel.gameObject.SetActive(false);
+        availableAttacksPanel.Clear();
     }
 
     private void FightManager_OnFailure()
@@ -52,5 +67,7 @@ public class UI : MonoBehaviour
     {
         player.OnHealthChanged -= UpdateHealth;
         fightManager.OnFailure -= FightManager_OnFailure;
+        fightManager.OnFightStarted -= FightManager_OnFightStarted;
+        fightManager.OnFightEnded -= FightManager_OnFightEnded;
     }
 }

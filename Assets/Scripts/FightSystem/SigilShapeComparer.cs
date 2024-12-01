@@ -6,6 +6,9 @@ public class SigilShapeComparer : IEqualityComparer<IReadOnlyList<LineShape>>
 
     public bool Equals(IReadOnlyList<LineShape> x, IReadOnlyList<LineShape> y)
     {
+        if (x.Count != y.Count)
+            return false;
+
         int count = x.Count;
         for (int i = 0; i < count; i++)
             if (Contains(y, x[i]) == false)

@@ -17,3 +17,4 @@ MonoBehaviour:
   - {x: 0, y: 0.6}
   - {x: 1, y: -1}
   color: {r: 1, g: 0.5, b: 0, a: 1}
+  sprite: {fileID: 503378902, guid: c7459b9ea03f301489cde2b7989d1630, type: 3}

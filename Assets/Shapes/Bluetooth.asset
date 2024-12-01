@@ -18,3 +18,4 @@ MonoBehaviour:
   - {x: -1, y: 1}
   - {x: 1, y: -1}
   color: {r: 0, g: 0.83333325, b: 1, a: 1}
+  sprite: {fileID: 108782063, guid: c7459b9ea03f301489cde2b7989d1630, type: 3}

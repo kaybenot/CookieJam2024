@@ -1,8 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FightManager : MonoBehaviour
 {
+    public event System.Action OnFightStarted;
+    public event System.Action OnFightEnded;
     public event System.Action OnFailure;
 
     [SerializeField] private SigilsSettings sigilsSettings;
@@ -17,6 +20,13 @@ public class FightManager : MonoBehaviour
     public Enemy CurrentEnemy => currentEnemy;
 
     private EnemyAttackData currentAttack;
+
+    [SerializeField]
+    private LineShape[] availableShapesForAttacks;
+
+    [SerializeField]
+    private List<Sigil> currentAvailableSigils;
+    public IReadOnlyList<Sigil> CurrentAvailableSigils => currentAvailableSigils;
 
     private void Awake()
     {
@@ -41,12 +51,44 @@ public class FightManager : MonoBehaviour
         lastTimeEnemyAttacked = Time.time;
         currentEnemy = enemy;
 
+        currentAvailableSigils.Clear();
+        for (int i = 0; i < 3; i++)
+        {
+            var sigil = GenerateRandomSigil();
+            currentAvailableSigils.Add(sigil);
+        }
+
         playerSigilsController.OnShapeDrawn += PlayerSigilsController_OnShapeDrawn;
         playerSigilsController.OnSigilDrawn += PlayerSigilsController_OnSigilDrawn;
         enemy.OnAttackStarted += Enemy_OnAttackStarted;
 
         fighting = true;
         shapesController.gameObject.SetActive(true);
+
+        OnFightStarted?.Invoke();
+    }
+
+    private Sigil GenerateRandomSigil()
+    {
+        int shapesCount = Random.Range(2, 4);
+
+        var listClone = new List<LineShape>(availableShapesForAttacks);
+        var shapesList = new List<LineShape>();
+        for (int i = 0; i < shapesCount; i++)
+        {
+            int randomIndex = Random.Range(0, listClone.Count);
+            var shape = listClone[randomIndex];
+            listClone.RemoveAt(randomIndex);
+            shapesList.Add(shape);
+        }
+
+        var sigil = new Sigil
+        {
+            Shape = shapesList,
+            Damage = shapesCount + Random.Range(-1, 2),
+        };
+
+        return sigil;
     }
 
     private void PlayerSigilsController_OnShapeDrawn(LineShape shape)
@@ -65,9 +107,18 @@ public class FightManager : MonoBehaviour
         }
     }
 
-    private void PlayerSigilsController_OnSigilDrawn(Sigil sigil)
+    private void PlayerSigilsController_OnSigilDrawn(IReadOnlyList<LineShape> shapesList)
     {
-        currentEnemy.Damage(sigil.Damage);
+        for (int i = 0; i < currentAvailableSigils.Count; i++)
+        {
+            var sigil = currentAvailableSigils[i];
+            if (SigilShapeComparer.Instance.Equals(shapesList, sigil.Shape))
+            {
+                GameLog.Instance.Log($"Inflicted {sigil.Damage} damage to enemy");
+                currentEnemy.Damage(sigil.Damage);
+                break;
+            }
+        }
     }
 
     private void Enemy_OnAttackStarted(EnemyAttackData attackData)
@@ -97,13 +148,13 @@ public class FightManager : MonoBehaviour
         currentEnemy = null;
         currentAttack = default;
         StopAllCoroutines();
-        
+
         enemySigilDisplay.Hide();
 
         fighting = false;
         shapesController.gameObject.SetActive(false);
+        OnFightEnded?.Invoke();
     }
-
 
     private void Update()
     {

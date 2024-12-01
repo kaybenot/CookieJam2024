@@ -49,3 +49,14 @@ MonoBehaviour:
   playerSigilsController: {fileID: 0}
   shapesController: {fileID: 0}
   enemySigilDisplay: {fileID: 0}
+  availableShapesForAttacks:
+  - {fileID: 11400000, guid: 0ceab353862216045b967e3395d5bf38, type: 2}
+  - {fileID: 11400000, guid: 0ce2f012565e3e54ab606449da59e08b, type: 2}
+  - {fileID: 11400000, guid: 10a843806c6bd1648adaf3030035d3cb, type: 2}
+  - {fileID: 11400000, guid: eb3320f78f8deae45bf2491419b30488, type: 2}
+  - {fileID: 11400000, guid: bffda99262c1ab740b3f2ade02e89de4, type: 2}
+  - {fileID: 11400000, guid: a4493df03c3e191449b5bc6b99b6d457, type: 2}
+  - {fileID: 11400000, guid: 01cd37ad6eecf9d469ac354989fa1292, type: 2}
+  - {fileID: 11400000, guid: bacd79729af5ae9449de285b7ce4c7ed, type: 2}
+  - {fileID: 11400000, guid: 53fe43dd365e2a54fa6188f64f644fe7, type: 2}
+  currentAvailableSigils: []

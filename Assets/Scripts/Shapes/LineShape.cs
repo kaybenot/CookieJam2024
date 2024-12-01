@@ -27,6 +27,11 @@ public class LineShape : ScriptableObject
     public Color Color => color;
 
 
+    [SerializeField]
+    private Sprite sprite;
+    public Sprite Sprite => sprite;
+
+
     [ContextMenu("Normalize")]
     private void Normalize()
     {
