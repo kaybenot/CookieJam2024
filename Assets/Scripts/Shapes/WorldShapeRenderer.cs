@@ -15,30 +15,31 @@ public class WorldShapeRenderer : ShapeRenderer
         lineRenderer = GetComponent<LineRenderer>();
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        lineRenderer.enabled = true;
+    }
+
     protected override void OnPointAdded(int pointIndex)
     {
-        var newPoint = shapesDrawingController.LinePoints[pointIndex];
+        var newPoint = shape.LinePoints[pointIndex];
         var worldPosition = ScreenToWorldPosition(newPoint);
-        lineRenderer.positionCount = shapesDrawingController.LinePoints.Count;
-        lineRenderer.SetPosition(lineRenderer.positionCount - 2, worldPosition);
+        lineRenderer.positionCount = shape.LinePoints.Count;
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, worldPosition);
 
         UpdateLastPointPosition();
     }
 
     private void UpdateLastPointPosition()
     {
-        var lastPointWorldPosition = ScreenToWorldPosition(shapesDrawingController.LastPoint);
+        var lastPointWorldPosition = ScreenToWorldPosition(shape.LinePoints[^1]);
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, lastPointWorldPosition);
     }
 
     private void Update()
     {
-        bool isDrawing = shapesDrawingController.IsDrawing;
-        lineRenderer.enabled = isDrawing;
-        if (isDrawing)
-        {
-            UpdateLastPointPosition();
-        }
+        UpdateLastPointPosition();
     }
 
     private Vector3 ScreenToWorldPosition(Vector3 screenPoint)
@@ -46,5 +47,11 @@ public class WorldShapeRenderer : ShapeRenderer
         screenPoint.z = lineDepth;
         var worldPosition = viewCamera.ScreenToWorldPoint(screenPoint);
         return worldPosition;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        lineRenderer.enabled = false;
     }
 }

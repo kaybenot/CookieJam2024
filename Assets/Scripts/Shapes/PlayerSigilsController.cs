@@ -9,7 +9,7 @@ public class PlayerSigilsController : MonoBehaviour
     private ShapesDrawingController shapesDrawingController;
 
     [SerializeField]
-    private List<LineShape> drawnShapes;
+    private List<LineInstance> drawnShapes;
 
     [SerializeField]
     private Player player;
@@ -24,7 +24,7 @@ public class PlayerSigilsController : MonoBehaviour
         shapesDrawingController.OnShapeDrawn += ShapesDrawingController_OnShapeDrawn;
     }
 
-    private void ShapesDrawingController_OnShapeDrawn(LineShape lineShape)
+    private void ShapesDrawingController_OnShapeDrawn(LineInstance lineShape)
     {
         drawnShapes.Add(lineShape);
         timer = 0;
@@ -47,8 +47,8 @@ public class PlayerSigilsController : MonoBehaviour
 
     private void CancelChain()
     {
-        if (player.TryGetSigil(drawnShapes, out var sigil))
-            OnSigilDrawn?.Invoke(sigil);
+        //if (player.TryGetSigil(drawnShapes, out var sigil))
+        //    OnSigilDrawn?.Invoke(sigil);
 
         drawnShapes.Clear();
     }

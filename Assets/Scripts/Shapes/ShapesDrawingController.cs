@@ -1,35 +1,27 @@
-using System.Collections.Generic;
-using UnityEngine;
-
-public delegate void ShapePointAddedEventHandler(int pointIndex);
+﻿using UnityEngine;
 
 public class ShapesDrawingController : MonoBehaviour
 {
-    public event ShapePointAddedEventHandler OnPointAdded;
-    public event System.Action<LineShape> OnShapeDrawn;
+    public event System.Action<LineInstance> OnShapeDrawn;
 
     [SerializeField]
     private MouseInputEventProvider mouseInputEventProvider;
-
     [SerializeField]
-    private List<Vector2> linePoints;
-    public IReadOnlyList<Vector2> LinePoints => linePoints;
+    private LineInstance shapePrototype;
+    [SerializeField]
+    private LineShape[] checkedShapes;
+    [SerializeField]
+    private float minPointsDistance = 0.1f;
 
+    [Space]
     [SerializeField]
     private Vector2 lastPoint;
     public Vector2 LastPoint => lastPoint;
 
     [SerializeField]
-    private float minPointsDistance = 0.1f;
-
-    [SerializeField]
-    private LineShape[] checkedShapes;
-
-    [SerializeField]
-    private List<Vector2> normalizedPoints;
+    private LineInstance currentlyDrawnShape;
 
     public LineShape bestShape;
-
     public bool IsDrawing { get; private set; }
 
     private void OnEnable()
@@ -41,15 +33,12 @@ public class ShapesDrawingController : MonoBehaviour
     private void MouseInputEventProvider_OnPressed()
     {
         bestShape = null;
-        Clear();
-        AddLinePoint(GetCurrentMouseScreenPosition());
+        currentlyDrawnShape = Instantiate(shapePrototype, transform);
+
+        currentlyDrawnShape.AddLinePoint(GetCurrentMouseScreenPosition());
     }
 
-    public void Clear()
-    {
-        linePoints.Clear();
-        normalizedPoints.Clear();
-    }
+    private Vector2 GetCurrentMouseScreenPosition() => Input.mousePosition;
 
     private void Update()
     {
@@ -63,31 +52,19 @@ public class ShapesDrawingController : MonoBehaviour
 
     private void UpdateShape()
     {
-        float sqrDistance = (lastPoint - linePoints[^1]).sqrMagnitude;
+        float sqrDistance = (lastPoint - currentlyDrawnShape.NormalizedPoints[^1]).sqrMagnitude;
         if (sqrDistance > minPointsDistance * minPointsDistance)
         {
-            AddLinePoint(lastPoint);
+            currentlyDrawnShape.AddLinePoint(lastPoint);
             RecognizeShape();
         }
     }
-
-    private void AddLinePoint(Vector2 newPoint)
-    {
-        linePoints.Add(newPoint);
-        normalizedPoints.Add(new Vector2());
-        ShapesHelper.GetNormalizedPoints(linePoints, normalizedPoints);
-
-        OnPointAdded?.Invoke(linePoints.Count - 1);
-    }
-
-    private Vector2 GetCurrentMouseScreenPosition() => Input.mousePosition;
 
     private void MouseInputEventProvider_OnReleased()
     {
         RecognizeShape();
         if (bestShape != null)
-            OnShapeDrawn?.Invoke(bestShape);
-        Clear();
+            OnShapeDrawn?.Invoke(currentlyDrawnShape);
     }
 
     private void RecognizeShape()
@@ -97,7 +74,7 @@ public class ShapesDrawingController : MonoBehaviour
         for (int i = 0; i < checkedShapes.Length; i++)
         {
             var shape = checkedShapes[i];
-            var shapeValue = ShapesHelper.Distance(shape, normalizedPoints);
+            var shapeValue = ShapesHelper.Distance(shape, currentlyDrawnShape.NormalizedPoints);
             Debug.Log($"{checkedShapes[i].name} has distance {shapeValue}");
             if (shapeValue < bestShapeValue)
             {
@@ -118,22 +95,16 @@ public class ShapesDrawingController : MonoBehaviour
         }
     }
 
+
     private void OnDisable()
     {
         mouseInputEventProvider.OnPressed -= MouseInputEventProvider_OnPressed;
         mouseInputEventProvider.OnReleased -= MouseInputEventProvider_OnReleased;
     }
 
+
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.white;
-        for (int i = 1; i < normalizedPoints.Count; i++)
-        {
-            var start = normalizedPoints[i - 1];
-            var end = normalizedPoints[i];
-            Gizmos.DrawLine(start, end);
-        }
-
         foreach (var shape in checkedShapes)
         {
             Gizmos.color = shape.Color;
@@ -146,4 +117,3 @@ public class ShapesDrawingController : MonoBehaviour
         }
     }
 }
-

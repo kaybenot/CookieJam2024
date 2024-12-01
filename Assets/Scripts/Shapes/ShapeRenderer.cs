@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class ShapeRenderer : MonoBehaviour
 {
-    [SerializeField]
-    protected ShapesDrawingController shapesDrawingController;
+    [SerializeField, FormerlySerializedAs("shapesDrawingController")]
+    protected LineInstance shape;
 
     protected virtual void OnEnable()
     {
-        shapesDrawingController.OnPointAdded += OnPointAdded;
+        shape.OnPointAdded += OnPointAdded;
     }
 
     protected abstract void OnPointAdded(int pointIndex);
 
     protected virtual void OnDisable()
     {
-        shapesDrawingController.OnPointAdded -= OnPointAdded;
+        shape.OnPointAdded -= OnPointAdded;
     }
 }
