@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
 
     public event Action OnRoomSpawned;
     public event Action OnLevelStarted;
+    public event Action OnGameOver;
 
     [CanBeNull] public Level CurrentLevel => currentLevel;
     
@@ -34,12 +35,19 @@ public class LevelManager : MonoBehaviour
     public void RunLevel(LevelSettings settings)
     {
         ReleaseLevel();
+        fightManager.OnFailure += FightManager_OnFailure;
         currentLevel = new Level(settings);
         currentLevel.OnEnemySpawned += CurrentLevel_OnEnemySpawned;
         currentLevel.OnEnemyDefeated += CurrentLevel_OnEnemyDefeated;
         currentLevel.OnRoomSpawned += () => OnRoomSpawned?.Invoke();
         currentLevel.Initialize();
         OnLevelStarted?.Invoke();
+    }
+
+    private void FightManager_OnFailure()
+    {
+        fightManager.OnFailure -= FightManager_OnFailure;
+        OnGameOver?.Invoke();
     }
 
     private void CurrentLevel_OnEnemySpawned(Enemy enemy)

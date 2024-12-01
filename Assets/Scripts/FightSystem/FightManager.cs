@@ -1,9 +1,10 @@
 using System.Collections;
-using Unity.Burst;
 using UnityEngine;
 
 public class FightManager : MonoBehaviour
 {
+    public event System.Action OnFailure;
+
     [SerializeField] private SigilsSettings sigilsSettings;
     [SerializeField] private Player player;
     [SerializeField] private PlayerSigilsController playerSigilsController;
@@ -20,6 +21,18 @@ public class FightManager : MonoBehaviour
     private void Awake()
     {
         shapesController.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        player.OnDeath += Player_OnDeath;
+    }
+
+    private void Player_OnDeath()
+    {
+        player.OnDeath -= Player_OnDeath;
+        fighting = false;
+        OnFailure?.Invoke();
     }
 
     public void BeginFight(Enemy enemy)

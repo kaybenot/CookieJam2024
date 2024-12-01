@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public SigilTree SigilTree { get; private set; }
 
     public Action OnHitReceived { get; set; }
-    public Action OnDeath { get; set; }
+    public event Action OnDeath;
 
     [field: SerializeField] public int Health { get; private set; }
     [field: SerializeField] public int MaxHealth { get; private set; }
