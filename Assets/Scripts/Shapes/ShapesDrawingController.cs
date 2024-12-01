@@ -52,7 +52,7 @@ public class ShapesDrawingController : MonoBehaviour
 
     private void UpdateShape()
     {
-        float sqrDistance = (lastPoint - currentlyDrawnShape.NormalizedPoints[^1]).sqrMagnitude;
+        float sqrDistance = (lastPoint - currentlyDrawnShape.LinePoints[^1]).sqrMagnitude;
         if (sqrDistance > minPointsDistance * minPointsDistance)
         {
             currentlyDrawnShape.AddLinePoint(lastPoint);
@@ -69,5 +69,4 @@ public class ShapesDrawingController : MonoBehaviour
         mouseInputEventProvider.OnPressed -= MouseInputEventProvider_OnPressed;
         mouseInputEventProvider.OnReleased -= MouseInputEventProvider_OnReleased;
     }
-
 }
