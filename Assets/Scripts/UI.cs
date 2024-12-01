@@ -13,6 +13,10 @@ public class UI : MonoBehaviour
     [SerializeField] private Button skillTreeButton;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private AvailableAttacksPanel availableAttacksPanel;
+    [SerializeField] private TMP_Text killsCountLabel;
+    [SerializeField] private TMP_Text killsCountSummary;
+
+    private int killsCount = 0;
 
     private void Awake()
     {
@@ -29,20 +33,26 @@ public class UI : MonoBehaviour
         availableAttacksPanel.gameObject.SetActive(true);
         availableAttacksPanel.SetSigils(fightManager.CurrentAvailableSigils);
     }
+
     private void FightManager_OnFightEnded()
     {
         availableAttacksPanel.gameObject.SetActive(false);
         availableAttacksPanel.Clear();
+
+        killsCount++;
+        killsCountLabel.text = $"Kills count: {killsCount}";
     }
 
     private void FightManager_OnFailure()
     {
         gameOverScreen.gameObject.SetActive(true);
+        killsCountSummary.text = $"You killed {killsCount} enemies";
     }
 
     private void Start()
     {
         UpdateHealth(player.Health, player.MaxHealth);
+        killsCountLabel.text = "Kills count: 0";
     }
 
     public void UpdateHealth(int current, int max)

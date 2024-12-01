@@ -32,6 +32,14 @@ PrefabInstance:
       propertyPath: stats.attacks.Array.data[1].damage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6608516752409282937, guid: 8a244e8585401f64a888a018cef53bd5, type: 3}
+      propertyPath: stats.attacks.Array.data[0].loadingTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608516752409282937, guid: 8a244e8585401f64a888a018cef53bd5, type: 3}
+      propertyPath: stats.attacks.Array.data[1].loadingTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8000288786684273929, guid: 8a244e8585401f64a888a018cef53bd5, type: 3}
       propertyPath: animator
       value: 

@@ -51,7 +51,6 @@ MonoBehaviour:
   enemySigilDisplay: {fileID: 0}
   availableShapesForAttacks:
   - {fileID: 11400000, guid: 0ceab353862216045b967e3395d5bf38, type: 2}
-  - {fileID: 11400000, guid: 0ce2f012565e3e54ab606449da59e08b, type: 2}
   - {fileID: 11400000, guid: 10a843806c6bd1648adaf3030035d3cb, type: 2}
   - {fileID: 11400000, guid: eb3320f78f8deae45bf2491419b30488, type: 2}
   - {fileID: 11400000, guid: bffda99262c1ab740b3f2ade02e89de4, type: 2}
