@@ -1,11 +1,14 @@
-using System;
 using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private LayerMask interactableLayer;
-    
+
+    private void Awake()
+    {
+    }
+
     private void Start()
     {
         InputManager.Instance.OnLeftClick += TryInteract;
@@ -18,6 +21,9 @@ public class Interactor : MonoBehaviour
 
     private void TryInteract(float screenX, float screenY)
     {
+        if (enabled == false)
+            return;
+
         if (Camera.main == null)
         {
             return;

@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private LevelSettings editorLevel;
     [SerializeField] private FightManager fightManager;
+    [SerializeField] private Interactor interactor;
 
     public event Action OnRoomSpawned;
     public event Action OnLevelStarted;
@@ -43,11 +44,13 @@ public class LevelManager : MonoBehaviour
 
     private void CurrentLevel_OnEnemySpawned(Enemy enemy)
     {
+        interactor.enabled = false;
         fightManager.BeginFight(enemy);
     }
 
     private void CurrentLevel_OnEnemyDefeated(Enemy enemy)
     {
+        interactor.enabled = true;
         fightManager.EndFight();
     }
 

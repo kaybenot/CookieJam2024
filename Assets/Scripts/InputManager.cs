@@ -29,7 +29,7 @@ public class InputManager
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void Initialize()
     {
-        Instance = new InputManager();
+        //Instance = new InputManager();
     }
 
     private void RegisterCallbacks()
