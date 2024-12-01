@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public delegate void HealthChangeEventHandler(int health, int maxHealth);
@@ -7,6 +8,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     public event HealthChangeEventHandler OnHealthChanged;
+
+    [SerializeField]
+    private SigilsSettings initialSigils;
 
     [field: SerializeField] public SigilTree SigilTree { get; private set; } = new();
     
@@ -42,5 +46,11 @@ public class Player : MonoBehaviour
     {
         Health = MaxHealth;
         OnHealthChanged?.Invoke(Health, MaxHealth);
+    }
+
+    public bool TryGetSigil(IReadOnlyList<LineShape> shapes, out Sigil sigil)
+    {
+        sigil = default;
+        return default;
     }
 }

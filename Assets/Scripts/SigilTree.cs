@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [Serializable]
-public class SigilTreeNode
+public sealed class SigilTreeNode
 {
     [SerializeReference, FormerlySerializedAs("Nodes")]
     private List<SigilTreeNode> nodes;

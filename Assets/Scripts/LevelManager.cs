@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -7,11 +6,10 @@ public class LevelManager : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private LevelSettings editorLevel;
-    
-    public Action<Enemy> OnEnemySpawned { get; set; }
-    public Action<Enemy> OnEnemyDefeated { get; set; }
-    public Action OnRoomSpawned { get; set; }
-    public Action OnLevelStarted { get; set; }
+    [SerializeField] private FightManager fightManager;
+
+    public event Action OnRoomSpawned;
+    public event Action OnLevelStarted;
 
     [CanBeNull] public Level CurrentLevel => currentLevel;
     
@@ -36,11 +34,21 @@ public class LevelManager : MonoBehaviour
     {
         ReleaseLevel();
         currentLevel = new Level(settings);
-        currentLevel.OnEnemySpawned += (enemy) => OnEnemySpawned?.Invoke(enemy);
-        currentLevel.OnEnemyDefeated += (enemy) => OnEnemyDefeated?.Invoke(enemy);
+        currentLevel.OnEnemySpawned += CurrentLevel_OnEnemySpawned;
+        currentLevel.OnEnemyDefeated += CurrentLevel_OnEnemyDefeated;
         currentLevel.OnRoomSpawned += () => OnRoomSpawned?.Invoke();
         currentLevel.Initialize();
         OnLevelStarted?.Invoke();
+    }
+
+    private void CurrentLevel_OnEnemySpawned(Enemy enemy)
+    {
+        fightManager.BeginFight(enemy);
+    }
+
+    private void CurrentLevel_OnEnemyDefeated(Enemy enemy)
+    {
+        fightManager.EndFight();
     }
 
     public void ReleaseLevel()
@@ -50,6 +58,8 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
+        currentLevel.OnEnemySpawned -= CurrentLevel_OnEnemySpawned;
+        currentLevel.OnEnemyDefeated -= CurrentLevel_OnEnemyDefeated;
         currentLevel.Release();
         currentLevel = null;
         KillEnemies();

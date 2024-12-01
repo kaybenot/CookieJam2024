@@ -19,19 +19,10 @@ public class FightManager : MonoBehaviour
 
     private void Awake()
     {
-        levelManager.OnEnemySpawned += BeginFight;
-        levelManager.OnEnemyDefeated += EndFight;
-        
         shapesController.gameObject.SetActive(false);
     }
 
-    private void OnDestroy()
-    {
-        levelManager.OnEnemySpawned -= BeginFight;
-        levelManager.OnEnemyDefeated -= EndFight;
-    }
-
-    private void BeginFight(Enemy enemy)
+    public void BeginFight(Enemy enemy)
     {
         GameLog.Instance.Log("You have been attacked");
         lastTimeEnemyAttacked = Time.time;
@@ -43,7 +34,7 @@ public class FightManager : MonoBehaviour
         shapesController.gameObject.SetActive(true);
     }
     
-    private void EndFight(Enemy enemy)
+    public void EndFight()
     {
         GameLog.Instance.Log("You have defeated an opponent");
         currentEnemy = null;

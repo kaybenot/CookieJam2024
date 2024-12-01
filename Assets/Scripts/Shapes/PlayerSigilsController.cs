@@ -12,7 +12,7 @@ public class PlayerSigilsController : MonoBehaviour
     private List<LineShape> drawnShapes;
 
     [SerializeField]
-    private SigilsSettings sigilsSettings;
+    private Player player;
 
     [SerializeField]
     private float resetCooldown;
@@ -47,7 +47,7 @@ public class PlayerSigilsController : MonoBehaviour
 
     private void CancelChain()
     {
-        if (sigilsSettings.TryGetSigil(drawnShapes, out var sigil))
+        if (player.TryGetSigil(drawnShapes, out var sigil))
             OnSigilDrawn?.Invoke(sigil);
 
         drawnShapes.Clear();

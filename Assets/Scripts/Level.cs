@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -10,10 +9,10 @@ public class Level
     public LevelSettings LevelSettings { get; }
 
     [CanBeNull] public Room CurrentRoom => currentRoom;
-    
-    public Action<Enemy> OnEnemySpawned { get; set; }
-    public Action<Enemy> OnEnemyDefeated { get; set; }
-    public Action OnRoomSpawned { get; set; }
+
+    public event Action<Enemy> OnEnemySpawned;
+    public event Action<Enemy> OnEnemyDefeated;
+    public event Action OnRoomSpawned;
 
     private Room currentRoom = null;
     

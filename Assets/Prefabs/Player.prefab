@@ -44,52 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ec23e69a886f94d9192a04a5ea9f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  initialSigils: {fileID: 0}
   <SigilTree>k__BackingField:
-    Roots:
-    - Nodes:
-      - Nodes: []
-        Sigil:
-          Name: 
-          Shape:
-          - {fileID: 11400000, guid: 10a843806c6bd1648adaf3030035d3cb, type: 2}
-          Damage: 2
-          HealthCost: 0
-        BuyHpCost: 1
-        Unlocked: 0
-      Sigil:
-        Name: 
-        Shape:
-        - {fileID: 11400000, guid: eb3320f78f8deae45bf2491419b30488, type: 2}
-        Damage: 1
-        HealthCost: 0
-      BuyHpCost: 1
-      Unlocked: 1
-    - Nodes:
-      - Nodes:
-        - Nodes: []
-          Sigil:
-            Name: 
-            Shape:
-            - {fileID: 11400000, guid: 53fe43dd365e2a54fa6188f64f644fe7, type: 2}
-            Damage: 2
-            HealthCost: 0
-          BuyHpCost: 1
-          Unlocked: 0
-        Sigil:
-          Name: 
-          Shape:
-          - {fileID: 11400000, guid: a4493df03c3e191449b5bc6b99b6d457, type: 2}
-          Damage: 1
-          HealthCost: 0
-        BuyHpCost: 1
-        Unlocked: 1
-      Sigil:
-        Name: 
-        Shape:
-        - {fileID: 11400000, guid: eb3320f78f8deae45bf2491419b30488, type: 2}
-        Damage: 1
-        HealthCost: 0
-      BuyHpCost: 1
-      Unlocked: 1
+    Roots: []
   <Health>k__BackingField: 10
   <MaxHealth>k__BackingField: 10
+  references:
+    version: 2
+    RefIds: []
