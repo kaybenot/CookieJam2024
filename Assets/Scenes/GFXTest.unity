@@ -531,10 +531,18 @@ PrefabInstance:
       propertyPath: hubController
       value: 
       objectReference: {fileID: 625269566}
+    - target: {fileID: 3437495572624423576, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3466298853328814710, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1819695016}
+    - target: {fileID: 3466298853328814710, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
+      propertyPath: fightManager
+      value: 
+      objectReference: {fileID: 1539847937}
     - target: {fileID: 3760397946218225958, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1134,6 +1142,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+  m_CurrentSelected: {fileID: 0}
 --- !u!4 &1752715038
 Transform:
   m_ObjectHideFlags: 0

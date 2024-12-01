@@ -16,6 +16,14 @@ public class SigilTreeUI : MonoBehaviour
     {
         Instance = this;
     }
+
+    public void Toggle()
+    {
+        if (gameObject.activeSelf)
+            Hide();
+        else
+            Show();
+    }
     
     [ContextMenu("Show Nodes")]
     public void Show()
