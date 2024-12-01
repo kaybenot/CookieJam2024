@@ -6,6 +6,7 @@ public class SigilsSettings : ScriptableObject
 {
     [SerializeField]
     private Sigil[] sigils;
+    public IReadOnlyList<Sigil> Sigils => sigils;
 
     private Dictionary<IReadOnlyList<LineShape>, Sigil> sigilsByShapes;
 

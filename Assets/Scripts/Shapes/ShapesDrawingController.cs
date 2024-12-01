@@ -20,8 +20,6 @@ public class ShapesDrawingController : MonoBehaviour
     [SerializeField]
     private LineInstance currentlyDrawnShape;
 
-    public LineShape bestShape;
-
     [field:SerializeField]
     public bool IsDrawing { get; private set; }
 
@@ -33,7 +31,6 @@ public class ShapesDrawingController : MonoBehaviour
 
     private void MouseInputEventProvider_OnPressed()
     {
-        bestShape = null;
         currentlyDrawnShape = Instantiate(shapePrototype, transform);
 
         currentlyDrawnShape.AddLinePoint(GetCurrentMouseScreenPosition());

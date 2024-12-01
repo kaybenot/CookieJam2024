@@ -5,20 +5,21 @@ public class PlayerSigilsController : MonoBehaviour
 {
     public event System.Action<Sigil> OnSigilDrawn;
 
+    [Header("Settings")]
     [SerializeField]
     private ShapesDrawingController shapesDrawingController;
-
-    [SerializeField]
-    private List<LineInstance> drawnShapes;
-
     [SerializeField]
     private LineShape[] checkedShapes;
-
     [SerializeField]
     private Player player;
-
     [SerializeField]
     private float resetCooldown;
+
+    [Header("States")]
+    [SerializeField]
+    private List<LineInstance> drawnShapes;
+    [SerializeField]
+    private List<LineShape> recognizedShapes;
     [SerializeField]
     private float timer;
 
@@ -41,7 +42,10 @@ public class PlayerSigilsController : MonoBehaviour
     private void ShapesDrawingController_OnShapeDrawn(LineInstance lineShape)
     {
         timer = 0;
-        RecognizeShape(lineShape);
+        if (TryRecognizeShape(lineShape, out var shape))
+        {
+            recognizedShapes.Add(shape);
+        }
     }
 
     private void Update()
@@ -61,19 +65,23 @@ public class PlayerSigilsController : MonoBehaviour
 
     private void CancelChain()
     {
-        if (player.TryGetSigil(drawnShapes, out var sigil))
+        if (player.TryGetSigil(recognizedShapes, out var sigil))
+        {
+            GameLog.Instance.Log($"Sigil: {sigil.Name}");
             OnSigilDrawn?.Invoke(sigil);
+        }
 
         foreach (var line in drawnShapes)
-            if (line)   
+            if (line)
                 Destroy(line.gameObject);
 
         drawnShapes.Clear();
+        recognizedShapes.Clear();
     }
 
-    private LineShape RecognizeShape(LineInstance lineInstance)
+    private bool TryRecognizeShape(LineInstance lineInstance, out LineShape recognized)
     {
-        LineShape bestShape = null;
+        recognized = null;
         int bestShapeIndex = 0;
         float bestShapeValue = float.MaxValue;
         for (int i = 0; i < checkedShapes.Length; i++)
@@ -90,16 +98,16 @@ public class PlayerSigilsController : MonoBehaviour
 
         if (bestShapeValue > 100)
         {
-            bestShape = null;
+            recognized = null;
             Debug.Log($"Best shape: NONE");
         }
         else
         {
-            bestShape = checkedShapes[bestShapeIndex];
-            Debug.Log($"Best shape: {bestShape.name}");
+            recognized = checkedShapes[bestShapeIndex];
+            Debug.Log($"Best shape: {recognized.name}");
         }
 
-        return bestShape;
+        return recognized != null;
     }
 
 
@@ -113,6 +121,9 @@ public class PlayerSigilsController : MonoBehaviour
     {
         foreach (var shape in checkedShapes)
         {
+            if (shape == null)
+                continue;
+
             Gizmos.color = shape.Color;
             for (int i = 1; i < shape.PointsNormalized.Count; i++)
             {

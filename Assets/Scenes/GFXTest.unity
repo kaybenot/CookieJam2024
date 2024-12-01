@@ -755,6 +755,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 916256315}
+    - target: {fileID: 1727811284632912980, guid: c0f472a388292324e94ab522821d573e, type: 3}
+      propertyPath: initialSigils
+      value: 
+      objectReference: {fileID: 11400000, guid: 50473526fc1f71a41b88e702225cc71b, type: 2}
     - target: {fileID: 2098789617797730595, guid: c0f472a388292324e94ab522821d573e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

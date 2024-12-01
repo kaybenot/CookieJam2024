@@ -2,6 +2,8 @@
 
 public class SigilShapeComparer : IEqualityComparer<IReadOnlyList<LineShape>>
 {
+    public static SigilShapeComparer Instance { get; } = new SigilShapeComparer();
+
     public bool Equals(IReadOnlyList<LineShape> x, IReadOnlyList<LineShape> y)
     {
         int count = x.Count;
