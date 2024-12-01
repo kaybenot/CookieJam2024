@@ -290,12 +290,12 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.2890625
+    x: 0
     y: 0
-    width: 0.421875
+    width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 50
+  far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
@@ -304,7 +304,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 8400000, guid: 4acb5ac95a9a80b44973f90a9c1b9519, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -322,7 +322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531532516}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.040307112, y: -0.38231906, z: 0.016695753, w: 0.9229999}
+  m_LocalRotation: {x: 0.0401244, y: -0.3924282, z: 0.017138496, w: 0.9187472}
   m_LocalPosition: {x: 4.0899997, y: 2.53, z: -1.1699998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -430,14 +430,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 190862920709484576, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
-      propertyPath: shape
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 190862920709484576, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
-      propertyPath: shapesDrawingController
-      value: 
-      objectReference: {fileID: 320353977}
     - target: {fileID: 915081810659912068, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
       propertyPath: m_Name
       value: Game UI
@@ -446,10 +438,6 @@ PrefabInstance:
       propertyPath: shapesDrawingController
       value: 
       objectReference: {fileID: 320353977}
-    - target: {fileID: 1978375432924267591, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2875488784914124618, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -538,6 +526,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1819695016}
+    - target: {fileID: 3760397946218225958, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 531532519}
     - target: {fileID: 4321582188041786024, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
       propertyPath: hubController
       value: 
@@ -558,11 +550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e91d51c2bae2b468c76e1c12fa0ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &840816166 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2078512316907896577, guid: 6569674ed051c33498fe0563b55619ca, type: 3}
-  m_PrefabInstance: {fileID: 5443320774328931406}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &916256315 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4008459018442939847, guid: a9f0318766412b64dac8959759c36c79, type: 3}
@@ -574,7 +561,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 840816166}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2807881925480722258, guid: 9486cdebbc481a947bb43bd198664501, type: 3}
       propertyPath: m_Name
@@ -717,11 +704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4e794a2eaffcf429b1f1c4fc4c3b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1539847938 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5324529356263461692, guid: 9486cdebbc481a947bb43bd198664501, type: 3}
-  m_PrefabInstance: {fileID: 1190125622}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1609158765 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3304964525316143180, guid: c95195a388ffa92439f0024fabbdbc5f, type: 3}
@@ -990,7 +972,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
-  m_CurrentSelected: {fileID: 0}
 --- !u!4 &1752715038
 Transform:
   m_ObjectHideFlags: 0
@@ -1224,10 +1205,7 @@ PrefabInstance:
       objectReference: {fileID: 1539847937}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2078512316907896577, guid: 6569674ed051c33498fe0563b55619ca, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1539847938}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6569674ed051c33498fe0563b55619ca, type: 3}
 --- !u!1660057539 &9223372036854775807
@@ -1237,6 +1215,7 @@ SceneRoots:
   - {fileID: 531532520}
   - {fileID: 2165946544680469534}
   - {fileID: 1238772836671505478}
+  - {fileID: 1190125622}
   - {fileID: 5443320774328931406}
   - {fileID: 320353976}
   - {fileID: 625269564}

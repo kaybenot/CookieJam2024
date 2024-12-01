@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da90bc76879561643ba78d114aeb7f96, type: 3}
-  m_Name: Level 1
+  m_Name: Level 2
   m_EditorClassIdentifier: 
   RoomPrefabs:
-  - {fileID: 945058875373347416, guid: 709d5d66368a6fd4ea8ce547277853d3, type: 3}
-  - {fileID: 3311966115619235766, guid: 2b2dd9985870ee64f8c2f3c01bb0007f, type: 3}
-  - {fileID: 6177407349101240193, guid: 0437b09761a18c44ebc1541c8ff8fa69, type: 3}
+  - {fileID: 5656089310827500597, guid: e869117352037b444804960cffb1ebb4, type: 3}
+  - {fileID: 4403603815863809769, guid: d1d3d7e42034a2543b39c20cf2c2c835, type: 3}
   EnemyPrefabs:
   - {fileID: 3997467511954335854, guid: 8a244e8585401f64a888a018cef53bd5, type: 3}

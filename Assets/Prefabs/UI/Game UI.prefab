@@ -33,7 +33,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1226421073277997918}
   - {fileID: 1677819261563444812}
   - {fileID: 5725437907348607027}
   - {fileID: 7465869617354614092}
@@ -60,9 +59,9 @@ Canvas:
   m_GameObject: {fileID: 915081810659912068}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -807,88 +806,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1001 &647086503061713709
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2875488784914124618}
-    m_Modifications:
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873487312625115255, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-      propertyPath: m_Name
-      value: Pixel View Canvas
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
---- !u!224 &1226421073277997918 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1873487312625115251, guid: dc2a2dd816d63974e8b235d04234c8ca, type: 3}
-  m_PrefabInstance: {fileID: 647086503061713709}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &982114251203268316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1083,34 +1000,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shape Draw Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2605248421306474544, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2605248421306474544, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945291892531604828, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7832519162041126177, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7832519162041126177, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7832519162041126177, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7832519162041126177, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1213,8 +1102,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hub UI
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3138695385639274548, guid: d2ad57083401b814aa7db994c8da02c9, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1235,10 +1123,6 @@ PrefabInstance:
     - target: {fileID: 2089128921683049578, guid: 95d8191f41506f04999f2da09d11eeec, type: 3}
       propertyPath: m_Name
       value: Sigil tree panel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2089128921683049578, guid: 95d8191f41506f04999f2da09d11eeec, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4386190105824394772, guid: 95d8191f41506f04999f2da09d11eeec, type: 3}
       propertyPath: m_Pivot.x
