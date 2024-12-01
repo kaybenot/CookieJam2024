@@ -2,15 +2,23 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[Serializable]
+public struct EnemyAttackData
+{
+    public float loadingTime;
+    public Sigil sigil;
+}
+
 public class Enemy : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float backflipInterval = 5f;
     [SerializeField] private EnemyStats stats;
 
-    public Action<Sigil> OnAttack { get; set; }
-    public Action<string> OnBehaviourCommand { get; set; }
-    public Action<Enemy> OnDeath { get; set; }
+    public event Action<EnemyAttackData> OnAttackStarted;
+    public event Action<Sigil> OnAttack;
+    public event Action<string> OnBehaviourCommand;
+    public event Action<Enemy> OnDeath;
 
     public float TimeToAttack => stats.TimeToAttack;
 
@@ -36,9 +44,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Attack()
+    public void StartAttack()
     {
-        OnAttack?.Invoke(stats.Sigils[Random.Range(0, stats.Sigils.Count)]);
+        var sigil = stats.attacks[Random.Range(0, stats.attacks.Count)];
+        OnAttackStarted?.Invoke(sigil);
         OnBehaviourCommand?.Invoke("attack");
     }
 

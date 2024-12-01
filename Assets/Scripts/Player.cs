@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         OnHealthChanged?.Invoke(Health, MaxHealth);
     }
 
-    public bool TryGetSigil(IReadOnlyList<LineShape> shapes, out Sigil sigil)
+    public bool TryGetSigil(IReadOnlyList<LineInstance> shapes, out Sigil sigil)
     {
         sigil = default;
         return default;

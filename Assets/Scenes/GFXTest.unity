@@ -132,9 +132,9 @@ PrefabInstance:
       value: Shapes Controller
       objectReference: {fileID: 0}
     - target: {fileID: 3304964525316143180, guid: c95195a388ffa92439f0024fabbdbc5f, type: 3}
-      propertyPath: resetCooldown
-      value: 0.4
-      objectReference: {fileID: 0}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1819695016}
     - target: {fileID: 4356272804912266511, guid: c95195a388ffa92439f0024fabbdbc5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

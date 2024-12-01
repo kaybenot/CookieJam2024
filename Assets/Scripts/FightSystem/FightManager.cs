@@ -28,23 +28,27 @@ public class FightManager : MonoBehaviour
         lastTimeEnemyAttacked = Time.time;
         currentEnemy = enemy;
 
-        enemy.OnAttack += OnEnemyAttack;
+        enemy.OnAttackStarted += Enemy_OnAttackStarted;
 
         fighting = true;
         shapesController.gameObject.SetActive(true);
     }
-    
+
     public void EndFight()
     {
         GameLog.Instance.Log("You have defeated an opponent");
+        currentEnemy.OnAttackStarted -= Enemy_OnAttackStarted;
         currentEnemy = null;
 
         fighting = false;
         shapesController.gameObject.SetActive(false);
     }
 
-    private void OnEnemyAttack(Sigil sigil)
+    private void Enemy_OnAttackStarted(EnemyAttackData attack)
     {
+
+        var sigil = attack.sigil;
+
         // TODO: Attack logic, now only deals damage
         player.Damage(sigil.Damage);
     }
@@ -62,6 +66,6 @@ public class FightManager : MonoBehaviour
         }
 
         lastTimeEnemyAttacked = Time.time;
-        currentEnemy.Attack();
+        currentEnemy.StartAttack();
     }
 }

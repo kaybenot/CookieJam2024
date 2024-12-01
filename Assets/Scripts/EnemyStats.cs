@@ -6,6 +6,6 @@ using UnityEngine;
 public class EnemyStats
 {
     public int Health;
-    public List<Sigil> Sigils;
+    public List<EnemyAttackData> attacks;
     public float TimeToAttack = 4f;
 }

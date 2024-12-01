@@ -49,12 +49,22 @@ MonoBehaviour:
   backflipInterval: 5
   stats:
     Health: 5
-    Sigils:
-    - Name: 
-      Shape:
-      - {fileID: 11400000, guid: 10a843806c6bd1648adaf3030035d3cb, type: 2}
-      Damage: 1
-      HealthCost: 0
+    attacks:
+    - loadingTime: 4
+      sigil:
+        Name: 
+        Shape:
+        - {fileID: 11400000, guid: a4493df03c3e191449b5bc6b99b6d457, type: 2}
+        Damage: 2
+        HealthCost: 0
+    - loadingTime: 5
+      sigil:
+        Name: 
+        Shape:
+        - {fileID: 11400000, guid: 53fe43dd365e2a54fa6188f64f644fe7, type: 2}
+        - {fileID: 11400000, guid: bb2639c6c21941840a3019703008bf21, type: 2}
+        Damage: 1
+        HealthCost: 0
     TimeToAttack: 6.5
 --- !u!114 &8000288786684273929
 MonoBehaviour:
