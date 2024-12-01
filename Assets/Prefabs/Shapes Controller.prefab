@@ -47,16 +47,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseInputEventProvider: {fileID: 9073242183280967174}
-  linePoints: []
-  lastPoint: {x: 0, y: 0}
-  minPointsDistance: 0.1
+  shapePrototype: {fileID: 1419277014126789564, guid: 254d5aa8eee3b624990a07df14dd8026, type: 3}
   checkedShapes:
   - {fileID: 11400000, guid: 10a843806c6bd1648adaf3030035d3cb, type: 2}
   - {fileID: 11400000, guid: 01cd37ad6eecf9d469ac354989fa1292, type: 2}
   - {fileID: 11400000, guid: eb3320f78f8deae45bf2491419b30488, type: 2}
   - {fileID: 11400000, guid: a4493df03c3e191449b5bc6b99b6d457, type: 2}
   - {fileID: 11400000, guid: 53fe43dd365e2a54fa6188f64f644fe7, type: 2}
-  normalizedPoints: []
+  minPointsDistance: 0.1
+  lastPoint: {x: 0, y: 0}
+  currentlyDrawnShape: {fileID: 0}
   bestShape: {fileID: 0}
 --- !u!114 &9073242183280967174
 MonoBehaviour:
@@ -88,5 +88,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shapesDrawingController: {fileID: 8058427312028167888}
   drawnShapes: []
+  player: {fileID: 0}
   resetCooldown: 1
   timer: 0

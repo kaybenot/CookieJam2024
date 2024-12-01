@@ -39,7 +39,8 @@ public class WorldShapeRenderer : ShapeRenderer
 
     private void Update()
     {
-        UpdateLastPointPosition();
+        if (shape != null) 
+           UpdateLastPointPosition();
     }
 
     private Vector3 ScreenToWorldPosition(Vector3 screenPoint)

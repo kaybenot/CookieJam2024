@@ -2,6 +2,7 @@
 
 public class ShapesDrawingController : MonoBehaviour
 {
+    public event System.Action<LineInstance> OnShapeDrawingStarted;
     public event System.Action<LineInstance> OnShapeDrawn;
 
     [SerializeField]
@@ -22,6 +23,8 @@ public class ShapesDrawingController : MonoBehaviour
     private LineInstance currentlyDrawnShape;
 
     public LineShape bestShape;
+
+    [field:SerializeField]
     public bool IsDrawing { get; private set; }
 
     private void OnEnable()
@@ -36,6 +39,7 @@ public class ShapesDrawingController : MonoBehaviour
         currentlyDrawnShape = Instantiate(shapePrototype, transform);
 
         currentlyDrawnShape.AddLinePoint(GetCurrentMouseScreenPosition());
+        OnShapeDrawingStarted?.Invoke(currentlyDrawnShape);
     }
 
     private Vector2 GetCurrentMouseScreenPosition() => Input.mousePosition;

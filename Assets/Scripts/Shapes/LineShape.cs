@@ -58,6 +58,10 @@ public static class ShapesHelper
         centroid /= count;
         var size = max - min;
         float extentsValue = Mathf.Max(size.x, size.y) / 2;
+        if (extentsValue == 0)
+        {
+            extentsValue = 1;
+        }
 
         for (int i = 0; i < count; i++)
         {

@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.03
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
+  m_AmbientSkyColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -171,18 +171,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8058427312028167888, guid: c95195a388ffa92439f0024fabbdbc5f, type: 3}
-      propertyPath: checkedShapes.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8058427312028167888, guid: c95195a388ffa92439f0024fabbdbc5f, type: 3}
-      propertyPath: 'checkedShapes.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: a4493df03c3e191449b5bc6b99b6d457, type: 2}
-    - target: {fileID: 8058427312028167888, guid: c95195a388ffa92439f0024fabbdbc5f, type: 3}
-      propertyPath: 'checkedShapes.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 53fe43dd365e2a54fa6188f64f644fe7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -330,13 +318,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531532516}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0401244, y: -0.3924282, z: 0.017138496, w: 0.9187472}
+  m_LocalRotation: {x: 0.040307112, y: -0.38231906, z: 0.016695753, w: 0.9229999}
   m_LocalPosition: {x: 4.0899997, y: 2.53, z: -1.1699998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.001, y: -45, z: 0}
 --- !u!114 &531532521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,12 +427,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 190862920709484576, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
+      propertyPath: shape
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 190862920709484576, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
       propertyPath: shapesDrawingController
       value: 
       objectReference: {fileID: 320353977}
     - target: {fileID: 915081810659912068, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
       propertyPath: m_Name
       value: Game UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 987438321124838541, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
+      propertyPath: shapesDrawingController
+      value: 
+      objectReference: {fileID: 320353977}
+    - target: {fileID: 1978375432924267591, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2875488784914124618, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
       propertyPath: m_Pivot.x
@@ -1093,6 +1093,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2619879054549005090, guid: 1a9bdb52970e60540809e70a215246af, type: 3}
+      propertyPath: shape
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2619879054549005090, guid: 1a9bdb52970e60540809e70a215246af, type: 3}
       propertyPath: shapesDrawingController
       value: 
