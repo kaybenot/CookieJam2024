@@ -13,6 +13,7 @@ public class FightManager : MonoBehaviour
     private bool fighting = false;
     private float lastTimeEnemyAttacked = 0f;
     private Enemy currentEnemy = null;
+    public Enemy CurrentEnemy => currentEnemy;
 
     private EnemyAttackData currentAttack;
 
