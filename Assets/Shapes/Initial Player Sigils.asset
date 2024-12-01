@@ -17,10 +17,10 @@ MonoBehaviour:
     Shape:
     - {fileID: 11400000, guid: 10a843806c6bd1648adaf3030035d3cb, type: 2}
     Damage: 3
-    HealthCost: 2
+    HealthCost: 0
   - Name: Cross
     Shape:
     - {fileID: 11400000, guid: 01cd37ad6eecf9d469ac354989fa1292, type: 2}
     - {fileID: 11400000, guid: eb3320f78f8deae45bf2491419b30488, type: 2}
     Damage: 3
-    HealthCost: 1
+    HealthCost: 0

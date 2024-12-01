@@ -8,7 +8,6 @@ public class EnemySigilDisplay : MonoBehaviour
 public class FightManager : MonoBehaviour
 {
     [SerializeField] private SigilsSettings sigilsSettings;
-    [SerializeField] private LevelManager levelManager;
     [SerializeField] private Player player;
     [SerializeField] private ShapesDrawingController shapesController;
     [SerializeField] private EnemySigilDisplay enemySigilDisplay;
