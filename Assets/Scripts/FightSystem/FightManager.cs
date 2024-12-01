@@ -1,9 +1,5 @@
+using System.Collections;
 using UnityEngine;
-
-public class EnemySigilDisplay : MonoBehaviour
-{
-
-}
 
 public class FightManager : MonoBehaviour
 {
@@ -40,6 +36,22 @@ public class FightManager : MonoBehaviour
         currentEnemy.Damage(sigil.Damage);
     }
 
+    private void Enemy_OnAttackStarted(EnemyAttackData attackData)
+    {
+        enemySigilDisplay.Show(attackData);
+        StartCoroutine(AttackLoading(attackData));  
+    }
+
+    private IEnumerator AttackLoading(EnemyAttackData attackData)
+    {
+        yield return new WaitForSeconds(attackData.loadingTime);
+
+        currentEnemy.FinishAttack();
+        // TODO: Attack logic, now only deals damage
+        player.Damage(attackData.damage);
+        enemySigilDisplay.Hide();
+    }
+
     public void EndFight()
     {
         GameLog.Instance.Log("You have defeated an opponent");
@@ -47,19 +59,14 @@ public class FightManager : MonoBehaviour
         playerSigilsController.OnSigilDrawn -= PlayerSigilsController_OnSigilDrawn;
         currentEnemy.OnAttackStarted -= Enemy_OnAttackStarted;
         currentEnemy = null;
+        StopAllCoroutines();
+        enemySigilDisplay.Hide();
+
 
         fighting = false;
         shapesController.gameObject.SetActive(false);
     }
 
-    private void Enemy_OnAttackStarted(EnemyAttackData attack)
-    {
-
-        var sigil = attack.sigil;
-
-        // TODO: Attack logic, now only deals damage
-        player.Damage(sigil.Damage);
-    }
 
     private void Update()
     {
