@@ -10,9 +10,15 @@ public class EnemyUI : MonoBehaviour
     private void OnEnable()
     {
         enemy.OnBehaviourCommand += Enemy_OnBehaviourCommand;
+        Refresh();
     }
 
     private void Enemy_OnBehaviourCommand(string obj)
+    {
+        Refresh();
+    }
+
+    private void Refresh()
     {
         hpLabel.SetText($"HP: {enemy.Stats.Health}");
     }
