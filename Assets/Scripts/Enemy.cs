@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float backflipInterval = 5f;
     [SerializeField] private EnemyStats stats;
+    public EnemyStats Stats => stats;
 
     [Header("States")]
     [SerializeField] private bool isAttacking;
