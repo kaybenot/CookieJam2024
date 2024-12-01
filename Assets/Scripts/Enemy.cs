@@ -10,6 +10,14 @@ public struct EnemyAttackData
     public float loadingTime;
 }
 
+public static class EnemyBehaviorCommands
+{
+    public const string Attack = "attack";
+    public const string StartAttack = "attack start";
+    public const string Damage = "damage";
+    public const string Backflip = "backflip";
+}
+
 public class Enemy : MonoBehaviour
 {
     public event Action<EnemyAttackData> OnAttackStarted;
@@ -43,6 +51,7 @@ public class Enemy : MonoBehaviour
     {
         GameLog.Instance.Log($"Enemy HP: {stats.Health}");
         stats.Health -= dmg;
+        OnBehaviourCommand?.Invoke(EnemyBehaviorCommands.Damage);
         if (stats.Health <= 0)
         {
             OnDeath?.Invoke(this);
@@ -60,7 +69,7 @@ public class Enemy : MonoBehaviour
             return;
         }
         
-        OnBehaviourCommand?.Invoke("backflip");
+        OnBehaviourCommand?.Invoke(EnemyBehaviorCommands.Backflip);
         lastBackflipTime = Time.time;
     }
 
@@ -69,12 +78,18 @@ public class Enemy : MonoBehaviour
         isAttacking = true;
         var sigil = stats.attacks[Random.Range(0, stats.attacks.Count)];
         OnAttackStarted?.Invoke(sigil);
-        OnBehaviourCommand?.Invoke("attack start");
+        OnBehaviourCommand?.Invoke(EnemyBehaviorCommands.StartAttack);
     }
 
     public void FinishAttack()
     {
         isAttacking = false;
-        OnBehaviourCommand?.Invoke("attack");
+        OnBehaviourCommand?.Invoke(EnemyBehaviorCommands.Attack);
+    }
+
+    public void Defend()
+    {
+        isAttacking = false;
+        OnBehaviourCommand?.Invoke(EnemyBehaviorCommands.Damage);
     }
 }

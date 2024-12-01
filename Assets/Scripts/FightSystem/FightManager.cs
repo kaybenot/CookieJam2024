@@ -41,7 +41,12 @@ public class FightManager : MonoBehaviour
         {
             if (shape == currentAttack.attack.shape)
             {
+                currentEnemy.Defend();
                 playerSigilsController.CancelChain();
+                StopAllCoroutines();
+                currentAttack = default;
+                enemySigilDisplay.Hide();
+                GameLog.Instance.Log("Defended from attack");
             }
         }
     }
@@ -63,7 +68,7 @@ public class FightManager : MonoBehaviour
         yield return new WaitForSeconds(attackData.loadingTime);
 
         currentEnemy.FinishAttack();
-        // TODO: Attack logic, now only deals damage
+
         player.Damage(attackData.damage);
         enemySigilDisplay.Hide();
         currentAttack = default;
@@ -76,9 +81,10 @@ public class FightManager : MonoBehaviour
         playerSigilsController.OnSigilDrawn -= PlayerSigilsController_OnSigilDrawn;
         currentEnemy.OnAttackStarted -= Enemy_OnAttackStarted;
         currentEnemy = null;
+        currentAttack = default;
         StopAllCoroutines();
+        
         enemySigilDisplay.Hide();
-
 
         fighting = false;
         shapesController.gameObject.SetActive(false);
@@ -87,12 +93,6 @@ public class FightManager : MonoBehaviour
 
     private void Update()
     {
-
-
-
-
-
-
         if (!fighting || currentEnemy == null)
         {
             return;
