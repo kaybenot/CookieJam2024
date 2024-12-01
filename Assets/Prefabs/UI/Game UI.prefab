@@ -942,11 +942,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1083498548574471899, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 540
       objectReference: {fileID: 0}
     - target: {fileID: 1083498548574471899, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 1083498548574471899, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -978,7 +978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1083498548574471899, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 1083498548574471899, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -999,6 +999,14 @@ PrefabInstance:
     - target: {fileID: 1880314469921637702, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
       propertyPath: m_Name
       value: Shape Draw Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945291892531604828, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
+      propertyPath: m_ShowMaskGraphic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103963321136369091, guid: c6acaf0c30ae457488319ff7de010dbc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
