@@ -18,15 +18,19 @@ public abstract class ShapeRenderer : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        if (shape != null)
+        if (shape)
+        {
             shape.OnPointAdded += OnPointAdded;
+        }
     }
 
     protected abstract void OnPointAdded(int pointIndex);
 
     protected virtual void OnDisable()
     {
-        if (shape != null)
+        if (shape)
+        {
             shape.OnPointAdded -= OnPointAdded;
+        }
     }
 }

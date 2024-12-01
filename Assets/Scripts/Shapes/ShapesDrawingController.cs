@@ -99,13 +99,11 @@ public class ShapesDrawingController : MonoBehaviour
         }
     }
 
-
     private void OnDisable()
     {
         mouseInputEventProvider.OnPressed -= MouseInputEventProvider_OnPressed;
         mouseInputEventProvider.OnReleased -= MouseInputEventProvider_OnReleased;
     }
-
 
     private void OnDrawGizmos()
     {

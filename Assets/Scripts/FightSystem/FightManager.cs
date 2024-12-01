@@ -9,6 +9,7 @@ public class FightManager : MonoBehaviour
 {
     [SerializeField] private SigilsSettings sigilsSettings;
     [SerializeField] private Player player;
+    [SerializeField] private PlayerSigilsController playerSigilsController;
     [SerializeField] private ShapesDrawingController shapesController;
     [SerializeField] private EnemySigilDisplay enemySigilDisplay;
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -12,6 +13,9 @@ public class ShapesRenderersManager : MonoBehaviour
     private ShapeRenderer shapeRendererPrototype;
 
     private ObjectPool<ShapeRenderer> renderersPool;
+
+    private readonly Dictionary<LineInstance, ShapeRenderer> renderersByLineInstance = new Dictionary<LineInstance, ShapeRenderer>();
+
 
     private void Awake()
     {
@@ -27,6 +31,17 @@ public class ShapesRenderersManager : MonoBehaviour
     {
         var renderer = renderersPool.Get();
         renderer.Shape = line;
+        renderersByLineInstance.Add(line, renderer);
+        line.OnLineDestroyed += Line_OnLineDestroyed; ;
+    }
+
+    private void Line_OnLineDestroyed(LineInstance line)
+    {
+        var renderer = renderersByLineInstance[line];
+        renderersByLineInstance.Remove(line);
+        renderer.Shape = null;
+        renderer.enabled = false;
+        renderersPool.Release(renderer);
     }
 
     private ShapeRenderer CreateRenderer() => Instantiate(shapeRendererPrototype, container);

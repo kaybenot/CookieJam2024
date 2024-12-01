@@ -6,6 +6,7 @@ public delegate void ShapePointAddedEventHandler(int pointIndex);
 public class LineInstance : MonoBehaviour
 {
     public event ShapePointAddedEventHandler OnPointAdded;
+    public event System.Action<LineInstance> OnLineDestroyed;
 
     [SerializeField]
     private List<Vector2> linePoints;
@@ -34,6 +35,11 @@ public class LineInstance : MonoBehaviour
     {
         linePoints[pointIndex] = position;
         ShapesHelper.GetNormalizedPoints(linePoints, normalizedPoints);
+    }
+
+    private void OnDestroy()
+    {
+        OnLineDestroyed?.Invoke(this);
     }
 
     private void OnDrawGizmos()

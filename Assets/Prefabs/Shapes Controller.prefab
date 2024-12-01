@@ -58,6 +58,7 @@ MonoBehaviour:
   lastPoint: {x: 0, y: 0}
   currentlyDrawnShape: {fileID: 0}
   bestShape: {fileID: 0}
+  <IsDrawing>k__BackingField: 0
 --- !u!114 &9073242183280967174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,5 +90,5 @@ MonoBehaviour:
   shapesDrawingController: {fileID: 8058427312028167888}
   drawnShapes: []
   player: {fileID: 0}
-  resetCooldown: 1
+  resetCooldown: 0.4
   timer: 0

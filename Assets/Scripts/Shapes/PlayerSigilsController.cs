@@ -21,12 +21,17 @@ public class PlayerSigilsController : MonoBehaviour
 
     private void OnEnable()
     {
+        shapesDrawingController.OnShapeDrawingStarted += ShapesDrawingController_OnShapeDrawingStarted;
         shapesDrawingController.OnShapeDrawn += ShapesDrawingController_OnShapeDrawn;
+    }
+
+    private void ShapesDrawingController_OnShapeDrawingStarted(LineInstance lineShape)
+    {
+        drawnShapes.Add(lineShape);
     }
 
     private void ShapesDrawingController_OnShapeDrawn(LineInstance lineShape)
     {
-        drawnShapes.Add(lineShape);
         timer = 0;
     }
 
@@ -47,6 +52,9 @@ public class PlayerSigilsController : MonoBehaviour
 
     private void CancelChain()
     {
+        foreach (var line in drawnShapes)
+            Destroy(line.gameObject);
+
         //if (player.TryGetSigil(drawnShapes, out var sigil))
         //    OnSigilDrawn?.Invoke(sigil);
 
@@ -56,7 +64,7 @@ public class PlayerSigilsController : MonoBehaviour
     private void OnDisable()
     {
         shapesDrawingController.OnShapeDrawn -= ShapesDrawingController_OnShapeDrawn;
+        shapesDrawingController.OnShapeDrawingStarted -= ShapesDrawingController_OnShapeDrawingStarted;
     }
-
 }
 
