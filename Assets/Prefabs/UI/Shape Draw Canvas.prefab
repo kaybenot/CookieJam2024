@@ -85,7 +85,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4937418158209781693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +118,7 @@ MonoBehaviour:
   shapesDrawingController: {fileID: 0}
   container: {fileID: 7832519162041126177}
   shapeRendererPrototype: {fileID: 7483619412301564653, guid: 97a43fd6e736fcb4081989454aef0074, type: 3}
+  playerSigilsController: {fileID: 0}
 --- !u!1 &7558626946125916473
 GameObject:
   m_ObjectHideFlags: 0
