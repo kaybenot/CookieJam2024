@@ -553,7 +553,7 @@ PrefabInstance:
       objectReference: {fileID: 625269566}
     - target: {fileID: 5725437907348607027, guid: 2f3d00839ed2c7a41bd25dd7a2abe527, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -455.00006
+      value: -455
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1142,7 +1142,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
-  m_CurrentSelected: {fileID: 0}
 --- !u!4 &1752715038
 Transform:
   m_ObjectHideFlags: 0
