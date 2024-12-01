@@ -10,6 +10,12 @@ public class WorldShapeRenderer : ShapeRenderer
 
     private LineRenderer lineRenderer;
 
+    public override Color Color
+    {
+        get => lineRenderer.colorGradient.colorKeys[0].color;
+        set => lineRenderer.colorGradient.colorKeys[0].color = value;
+    }
+
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();

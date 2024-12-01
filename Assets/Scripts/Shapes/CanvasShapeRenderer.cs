@@ -11,6 +11,12 @@ public class CanvasShapeRenderer : ShapeRenderer
 
     private Canvas canvas;
 
+    public override Color Color
+    { 
+        get => lineRenderer.color;
+        set => lineRenderer.color = Color;
+    }
+
     private void Awake()
     {
         lineRenderer = GetComponent<UILineRenderer>();

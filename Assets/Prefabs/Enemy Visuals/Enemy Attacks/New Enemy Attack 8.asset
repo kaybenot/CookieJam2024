@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63b8334d01c05c94ba30b97cf4d7767a, type: 3}
-  m_Name: V Shape
+  m_Script: {fileID: 11500000, guid: a6c6d63ca0490624ea5245c97e27424b, type: 3}
+  m_Name: New Enemy Attack 8
   m_EditorClassIdentifier: 
-  points:
-  - {x: -1, y: 1}
-  - {x: 0, y: -0.6}
-  - {x: 1, y: 1}
-  color: {r: 0.16666675, g: 1, b: 0, a: 1}
+  shape: {fileID: 11400000, guid: 0ce2f012565e3e54ab606449da59e08b, type: 2}
+  sprite: {fileID: 108782063, guid: c7459b9ea03f301489cde2b7989d1630, type: 3}

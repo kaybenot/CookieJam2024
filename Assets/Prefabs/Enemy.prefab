@@ -50,22 +50,14 @@ MonoBehaviour:
   stats:
     Health: 5
     attacks:
-    - loadingTime: 4
-      sigil:
-        Name: 
-        Shape:
-        - {fileID: 11400000, guid: a4493df03c3e191449b5bc6b99b6d457, type: 2}
-        Damage: 2
-        HealthCost: 0
-    - loadingTime: 5
-      sigil:
-        Name: 
-        Shape:
-        - {fileID: 11400000, guid: 53fe43dd365e2a54fa6188f64f644fe7, type: 2}
-        - {fileID: 11400000, guid: bb2639c6c21941840a3019703008bf21, type: 2}
-        Damage: 1
-        HealthCost: 0
+    - attack: {fileID: 11400000, guid: 0be61751c7893e240827c28856c6d158, type: 2}
+      damage: 0
+      loadingTime: 4
+    - attack: {fileID: 11400000, guid: 5994c107af7de0f4c8bf169a5e452f61, type: 2}
+      damage: 0
+      loadingTime: 5
     TimeToAttack: 6.5
+  isAttacking: 0
 --- !u!114 &8000288786684273929
 MonoBehaviour:
   m_ObjectHideFlags: 0

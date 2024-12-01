@@ -19,6 +19,7 @@ public class ShapesDrawingController : MonoBehaviour
 
     [SerializeField]
     private LineInstance currentlyDrawnShape;
+    public LineInstance CurrentlyDrawnShape => currentlyDrawnShape;
 
     [field:SerializeField]
     public bool IsDrawing { get; private set; }

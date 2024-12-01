@@ -1,9 +1,6 @@
+using System.Collections;
+using Unity.Burst;
 using UnityEngine;
-
-public class EnemySigilDisplay : MonoBehaviour
-{
-
-}
 
 public class FightManager : MonoBehaviour
 {
@@ -17,6 +14,8 @@ public class FightManager : MonoBehaviour
     private float lastTimeEnemyAttacked = 0f;
     private Enemy currentEnemy = null;
 
+    private EnemyAttackData currentAttack;
+
     private void Awake()
     {
         shapesController.gameObject.SetActive(false);
@@ -28,6 +27,7 @@ public class FightManager : MonoBehaviour
         lastTimeEnemyAttacked = Time.time;
         currentEnemy = enemy;
 
+        playerSigilsController.OnShapeDrawn += PlayerSigilsController_OnShapeDrawn;
         playerSigilsController.OnSigilDrawn += PlayerSigilsController_OnSigilDrawn;
         enemy.OnAttackStarted += Enemy_OnAttackStarted;
 
@@ -35,9 +35,38 @@ public class FightManager : MonoBehaviour
         shapesController.gameObject.SetActive(true);
     }
 
+    private void PlayerSigilsController_OnShapeDrawn(LineShape shape)
+    {
+        if (currentEnemy && currentEnemy.IsAttacking)
+        {
+            if (shape == currentAttack.attack.shape)
+            {
+                playerSigilsController.CancelChain();
+            }
+        }
+    }
+
     private void PlayerSigilsController_OnSigilDrawn(Sigil sigil)
     {
         currentEnemy.Damage(sigil.Damage);
+    }
+
+    private void Enemy_OnAttackStarted(EnemyAttackData attackData)
+    {
+        currentAttack = attackData;
+        enemySigilDisplay.Show(attackData);
+        StartCoroutine(AttackLoading(attackData));
+    }
+
+    private IEnumerator AttackLoading(EnemyAttackData attackData)
+    {
+        yield return new WaitForSeconds(attackData.loadingTime);
+
+        currentEnemy.FinishAttack();
+        // TODO: Attack logic, now only deals damage
+        player.Damage(attackData.damage);
+        enemySigilDisplay.Hide();
+        currentAttack = default;
     }
 
     public void EndFight()
@@ -47,22 +76,23 @@ public class FightManager : MonoBehaviour
         playerSigilsController.OnSigilDrawn -= PlayerSigilsController_OnSigilDrawn;
         currentEnemy.OnAttackStarted -= Enemy_OnAttackStarted;
         currentEnemy = null;
+        StopAllCoroutines();
+        enemySigilDisplay.Hide();
+
 
         fighting = false;
         shapesController.gameObject.SetActive(false);
     }
 
-    private void Enemy_OnAttackStarted(EnemyAttackData attack)
-    {
-
-        var sigil = attack.sigil;
-
-        // TODO: Attack logic, now only deals damage
-        player.Damage(sigil.Damage);
-    }
 
     private void Update()
     {
+
+
+
+
+
+
         if (!fighting || currentEnemy == null)
         {
             return;

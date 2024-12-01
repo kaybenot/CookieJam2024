@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4e794a2eaffcf429b1f1c4fc4c3b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sigilsSettings: {fileID: 0}
+  player: {fileID: 0}
+  playerSigilsController: {fileID: 0}
+  shapesController: {fileID: 0}
+  enemySigilDisplay: {fileID: 0}

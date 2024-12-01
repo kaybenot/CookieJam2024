@@ -16,6 +16,8 @@ public abstract class ShapeRenderer : MonoBehaviour
         }
     }
 
+    public abstract Color Color { get; set; }
+
     protected virtual void OnEnable()
     {
         if (shape)

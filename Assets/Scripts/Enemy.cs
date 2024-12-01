@@ -5,20 +5,25 @@ using Random = UnityEngine.Random;
 [Serializable]
 public struct EnemyAttackData
 {
+    public EnemyAttack attack;
+    public int damage;
     public float loadingTime;
-    public Sigil sigil;
 }
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] private float backflipInterval = 5f;
-    [SerializeField] private EnemyStats stats;
-
     public event Action<EnemyAttackData> OnAttackStarted;
     public event Action<Sigil> OnAttack;
     public event Action<string> OnBehaviourCommand;
     public event Action<Enemy> OnDeath;
+
+    [Header("Settings")]
+    [SerializeField] private float backflipInterval = 5f;
+    [SerializeField] private EnemyStats stats;
+
+    [Header("States")]
+    [SerializeField] private bool isAttacking;
+    public bool IsAttacking => isAttacking;
 
     public float TimeToAttack => stats.TimeToAttack;
 
@@ -45,15 +50,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void StartAttack()
-    {
-        var sigil = stats.attacks[Random.Range(0, stats.attacks.Count)];
-        OnAttackStarted?.Invoke(sigil);
-        OnBehaviourCommand?.Invoke("attack");
-    }
-
     private void TryBackflip()
     {
+        if (isAttacking)
+            return;
+
         if (Time.time - lastBackflipTime < backflipInterval)
         {
             return;
@@ -63,5 +64,17 @@ public class Enemy : MonoBehaviour
         lastBackflipTime = Time.time;
     }
 
+    public void StartAttack()
+    {
+        isAttacking = true;
+        var sigil = stats.attacks[Random.Range(0, stats.attacks.Count)];
+        OnAttackStarted?.Invoke(sigil);
+        OnBehaviourCommand?.Invoke("attack start");
+    }
 
+    public void FinishAttack()
+    {
+        isAttacking = false;
+        OnBehaviourCommand?.Invoke("attack");
+    }
 }
